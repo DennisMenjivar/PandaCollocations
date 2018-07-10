@@ -1,0 +1,84 @@
+/* You can add global styles to this file, and also import other style files 
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+
+pink-bluegrey.css
+*/
+/*@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";*/
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@import './custom-theme.scss';
+
+
+
+.crx-full-width {
+    width: 100%;
+  }
+
+  .crx-half-width {
+    width: 100%;
+  }
+
+  .crx-sidebar-button{
+    background-color: purple;
+  }
+
+  .crx-row-buttons{
+    margin-bottom: 40px;
+  }
+
+  .crx-button-primary{
+    background-color: #A50A23;
+    color: white;
+  }
+
+.crx-mat-form-field{
+  color: #566272;
+}
+
+.crx-confirm-dialog-button{
+  background-color: #566272;
+  color: white;
+}
+.crx-confirm-dialog-button-cancel{
+  background-color: #F1555E;
+  color: white;
+}
+
+.crx-badge{
+
+  width: 48px;
+  max-height: 48px;
+
+  img{
+    border-radius: 50%;
+    width: 48px;
+      top: 16px;
+      left: 18px;
+      position: absolute;
+  }
+}
+
+.crx-table-header{
+  color: #A50A23;
+}
+
+.crx-error-texto{
+  color: #A50A23;
+}
+.crx-form-group{
+  margin-top: 0%;
+  margin-bottom: 0%;
+  height: 2%;
+}
+
+.crx-row-2{
+  margin-top: 0%;
+  margin-bottom: 0%;
+  height: 20vh;
+}
+
+.crx-container-fluid{
+  height: 100%;
+}
