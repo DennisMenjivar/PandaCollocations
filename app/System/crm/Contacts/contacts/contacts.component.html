@@ -7,12 +7,14 @@
                         <i class="material-icons">contacts</i>
                     </div>
                     <h4 class="card-title">Contactos</h4>
+                    <!-- ; position: relative; float: right; -->
+                    <mat-form-field style="color: black; width: 35%"> 
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Busqueda..">
+                    </mat-form-field>
                 </div>
-
                 <div class="card-content">
                     <div class="content table-responsive">
                         <mat-table #table [dataSource]="dataSource">
-
                             <!-- Nombre Column -->
                             <ng-container matColumnDef="ID">
                                 <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>

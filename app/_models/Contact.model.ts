@@ -10,6 +10,7 @@ export class Contact {
     photoString: string;
     profession: number;
     maritalStatus: number;
+    status: number;
 
     constructor(id_company: number) {
         this.ID = 0;
@@ -23,5 +24,6 @@ export class Contact {
         this.photoString = '';
         this.profession = 0;
         this.maritalStatus = 0;
+        this.status = 0;
     }
 }

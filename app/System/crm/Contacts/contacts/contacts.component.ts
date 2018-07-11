@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ColocationService } from '../../../../_lib/colocation.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatPaginator, MatTableDataSource, DateAdapter } from '@angular/material';
@@ -10,6 +10,8 @@ import { Contact } from '../../../../_models/Contact.model';
   styleUrls: ['./contacts.component.scss']
 })
 export class ContactsComponent implements OnInit {
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   @Input()
   tipo_origen: string;
@@ -41,5 +43,11 @@ export class ContactsComponent implements OnInit {
   newContact() { }
 
   editContact(id: number) { }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
 
 }
