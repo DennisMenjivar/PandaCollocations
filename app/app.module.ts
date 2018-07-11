@@ -5,6 +5,9 @@ import { HttpModule } from '@angular/http';
 import { APP_BASE_HREF } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+//Para que cargue todo bien.
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { Routes, ɵROUTER_PROVIDERS } from '@angular/router';
 
 import {
   MatAutocompleteModule,
@@ -112,7 +115,7 @@ export class MaterialModule { }
     AuthLayoutComponent,
     // LoginPrincipalComponent,
   ],
-  providers: [ColocationService],
+  providers: [ColocationService, ɵROUTER_PROVIDERS, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
