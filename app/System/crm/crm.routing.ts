@@ -5,7 +5,7 @@ export const CrmRoutes: Routes = [
     {
       path: '',
       children: [ {
-        path: 'contactos',
+        path: 'contactos/:id',
         component: ContactsComponent
     }]}
     // , {
