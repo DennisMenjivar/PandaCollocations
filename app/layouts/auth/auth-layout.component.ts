@@ -9,8 +9,8 @@ export class AuthLayoutComponent implements OnInit {
     private sidebarVisible: boolean;
     id_company: number = -1;
     constructor(private element: ElementRef) {
-        if (JSON.parse(localStorage.getItem('currentUser'))) {
-            this.id_company = JSON.parse(localStorage.getItem('currentUser')).id_company;
+        if (JSON.parse(sessionStorage.getItem('currentUser'))) {
+            this.id_company = JSON.parse(sessionStorage.getItem('currentUser')).id_company;
         }
         this.sidebarVisible = false;
     }

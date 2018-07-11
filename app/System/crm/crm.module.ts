@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../app.module';
 import { ContactsComponent } from './Contacts/contacts/contacts.component';
 import { CrmRoutes } from './crm.routing';
+import { CreateContactComponent } from '../../System/crm/Contacts/create-contact/create-contact.component';
 
 @NgModule({
     imports: [
@@ -18,6 +19,7 @@ import { CrmRoutes } from './crm.routing';
     ],
     declarations: [
         ContactsComponent,
+        CreateContactComponent,
     ],
     entryComponents: [
 

@@ -132,10 +132,10 @@ export class SidebarComponent implements OnInit {
     id_company: number = -1;
 
     constructor(public _auxiliarService: ColocationService) {
-        if (JSON.parse(localStorage.getItem('currentUser'))) {
-            this.id_company = JSON.parse(localStorage.getItem('currentUser')).id_company;
-            this.company_name = JSON.parse(localStorage.getItem('currentUser')).company_name;
-            this.name_user = JSON.parse(localStorage.getItem('currentUser')).name_user;
+        if (JSON.parse(sessionStorage.getItem('currentUser'))) {
+            this.id_company = JSON.parse(sessionStorage.getItem('currentUser')).id_company;
+            this.company_name = JSON.parse(sessionStorage.getItem('currentUser')).company_name;
+            this.name_user = JSON.parse(sessionStorage.getItem('currentUser')).name_user;
         }
     }
 

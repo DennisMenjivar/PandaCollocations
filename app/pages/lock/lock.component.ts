@@ -8,7 +8,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 export class LockComponent implements OnInit, OnDestroy {
     test: Date = new Date();
     ngOnInit() {
-        localStorage.setItem('currentUser', JSON.stringify({
+        sessionStorage.setItem('currentUser', JSON.stringify({
             username: '',
             password: '',
             kind: -1,

@@ -30,7 +30,7 @@ export class ContactsComponent implements OnInit {
   }
 
   getContacts() {
-    var cu = JSON.parse(localStorage.getItem('currentUser'));
+    var cu = JSON.parse(sessionStorage.getItem('currentUser'));
     var id_company = cu.id_company;
     let contact: Contact = new Contact(id_company);
     this._auxiliar.getContacts(contact).subscribe(data => {

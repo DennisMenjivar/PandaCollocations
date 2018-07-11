@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
                 if (conectado == 1 && result.kind == 1 || conectado == 1 && localStorage.getItem('Aprobado') == 'SI') {
                     //Guardar en STORAGE
-                    localStorage.setItem('currentUser', JSON.stringify({
+                    sessionStorage.setItem('currentUser', JSON.stringify({
                         username: result.username,
                         password: result.password,
                         kind: result.kind,
