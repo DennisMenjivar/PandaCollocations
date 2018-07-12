@@ -8,6 +8,7 @@ export class Login {
     name_user: string;
     kind: number;
     conectado: number;
+    membership: number;
 
     constructor(pUsername: string, pPassword: string) {
         this.username = pUsername;
@@ -19,5 +20,6 @@ export class Login {
         this.name_user = '';
         this.kind = -1;
         this.conectado = -1;
+        this.membership = 0;
     }
 }

@@ -8,7 +8,7 @@
                     </div>
                     <h4 class="card-title">Contactos</h4>
                     <!-- ; position: relative; float: right; -->
-                    <mat-form-field style="color: black; width: 35%"> 
+                    <mat-form-field style="color: black; width: 35%">
                         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Busqueda..">
                     </mat-form-field>
                 </div>
@@ -40,13 +40,29 @@
                                 <mat-cell *matCellDef="let element"> {{element.profession}} </mat-cell>
                             </ng-container>
 
+                            <!-- Email Column -->
+                            <ng-container matColumnDef="status">
+                                <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    {{element.status_name}}
+                                </mat-cell>
+                            </ng-container>
+
                             <!-- Botones de Editar -->
                             <ng-container matColumnDef="editar">
-                                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef>Editar</mat-header-cell>
                                 <mat-cell *matCellDef="let pro">
+                                    <!-- Paid button -->
+                                    <button mat-icon-button style="color: rgb(25, 158, 25)" (click)="activeUser(pro)" *ngIf="pro.paid == 0 && membership == 1">
+                                        <mat-icon aria-label="Example icon-button with a heart icon">attach_money</mat-icon>
+                                    </button>
+                                    <!-- Status button -->
+                                    <button mat-icon-button style="color: #F1555E" (click)="activeUser(pro)" *ngIf="pro.status == 0">
+                                        <mat-icon aria-label="Example icon-button with a heart icon">done</mat-icon>
+                                    </button>
                                     <!-- Editar button -->
-                                    <button mat-button color="accent" class="pull-right" (click)="editContact(pro.id)">
-                                        <i class="material-icons">mode_edit</i>
+                                    <button mat-icon-button color="primary" (click)="editContact(pro)">
+                                        <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
                                     </button>
                                 </mat-cell>
                             </ng-container>

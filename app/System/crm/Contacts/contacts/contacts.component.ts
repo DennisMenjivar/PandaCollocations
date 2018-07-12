@@ -21,9 +21,11 @@ export class ContactsComponent implements OnInit {
 
   contactos: Contact[];
 
+  membership: number = 0;
+
   dataSource = new MatTableDataSource<Contact>();
 
-  displayedColumns = ['ID', 'name', 'identity', 'profesion', 'editar'];
+  displayedColumns = ['ID', 'name', 'identity', 'profesion', 'status', 'editar'];
 
   constructor(public _auxiliar: ColocationService, public dialog: MatDialog) { }
 
@@ -33,6 +35,7 @@ export class ContactsComponent implements OnInit {
 
   getContacts() {
     var cu = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.membership = cu.membership;
     var id_company = cu.id_company;
     let contact: Contact = new Contact(id_company);
     this._auxiliar.getContacts(contact).subscribe(data => {
@@ -40,9 +43,13 @@ export class ContactsComponent implements OnInit {
     })
   }
 
+  activeUser(contact: Contact) {
+
+  }
+
   newContact() { }
 
-  editContact(id: number) { }
+  editContact(contact: Contact) { }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace

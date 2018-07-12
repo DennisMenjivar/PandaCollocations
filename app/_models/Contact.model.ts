@@ -9,8 +9,11 @@ export class Contact {
     nationality: number;
     photoString: string;
     profession: number;
+    profession_name: string;
     maritalStatus: number;
     status: number;
+    status_name: string;
+    paid: number;
 
     constructor(id_company: number) {
         this.ID = 0;
@@ -23,7 +26,10 @@ export class Contact {
         this.nationality = 0;
         this.photoString = '';
         this.profession = 0;
+        this.profession_name = '';
         this.maritalStatus = 0;
         this.status = 0;
+        this.status_name = '';
+        this.paid = 0;
     }
 }
