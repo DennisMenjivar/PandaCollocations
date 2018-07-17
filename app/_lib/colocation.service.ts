@@ -13,7 +13,7 @@ export class ColocationService {
 
   connected: boolean = false;
 
-  // myLogin: Login = new Login('', '');
+  myContact: Contact = null;
 
   current_api: string = "http://grandappapi.grandapp.xyz/";//"http://creaxisapi.creaxis.xyz/";
 
@@ -38,6 +38,16 @@ export class ColocationService {
 
     return this._http.post(this.current_api + 'api/colocatechapi/getContacts/', body, requestOptions).map((data: Response) => {
       return data.json() as Contact[];
+    });
+  }
+
+  setContact(contact: Contact) {
+    var body = JSON.stringify(contact);
+    var headerOptions = new Headers({ 'Content-type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/colocatechapi/setContact/', body, requestOptions).map((data: Response) => {
+      return 1;
     });
   }
 }

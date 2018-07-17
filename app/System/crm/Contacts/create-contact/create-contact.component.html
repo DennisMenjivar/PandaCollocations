@@ -1,0 +1,110 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <button mat-button class="crx-button-primary" (click)="goBack()">
+                <i class="material-icons crx-button-primary">keyboard_backspace</i>
+            </button>
+            <button mat-button class="crx-button-primary" (click)="createContact()">
+                <i class="material-icons crx-button-primary">save</i>
+            </button>
+            <div class="card">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">contacts</i>
+                    </div>
+                    <h4 class="card-title">Crear Contacto</h4>
+                </div>
+                <div class="card-content">
+                    <div class="content table-responsive">
+                        <br>
+                        <mat-tab-group>
+                            <mat-tab label="Datos Generales">
+                                <div style="padding: 1%">
+                                    <form *ngIf="myContact">
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <mat-form-field class="example-full-width">
+                                                    <input type="text" matInput placeholder="Identidad" value="" name="identity" [(ngModel)]='myContact.identity'>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <mat-form-field class="example-full-width">
+                                                    <input type="text" matInput placeholder="Nombres" value="" name="firstName" [(ngModel)]='myContact.firstName'>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <mat-form-field class="example-full-width">
+                                                    <input type="text" matInput placeholder="Apellidos" value="" name="lastName" [(ngModel)]='myContact.lastName'>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput [matDatepicker]="fechaNacimiento" placeholder="Fecha Nacimiento" name="fechaNacimiento" [(ngModel)]="myContact.birthday">
+                                                    <mat-datepicker-toggle matSuffix [for]="fechaNacimiento"></mat-datepicker-toggle>
+                                                    <mat-datepicker #fechaNacimiento></mat-datepicker>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <!-- Selector Genero-->
+                                                <mat-form-field class="example-full-width">
+                                                    <mat-select placeholder="Genero" [(ngModel)]="myContact.gender" name="gender">
+                                                        <mat-option *ngFor="let mon of gender" [value]="mon.value">
+                                                            {{mon.viewValue}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <!-- Selector Country-->
+                                                <mat-form-field class="example-full-width">
+                                                    <mat-select placeholder="País" [(ngModel)]="myContact.nationality" name="nationality">
+                                                        <mat-option *ngFor="let mon of nationality" [value]="mon.value">
+                                                            {{mon.viewValue}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <!-- Selector Estado civil-->
+                                                <mat-form-field class="example-full-width">
+                                                    <mat-select placeholder="Estado civil" [(ngModel)]="myContact.maritalStatus" name="maritalStatus">
+                                                        <mat-option *ngFor="let mon of maritalStatus" [value]="mon.value">
+                                                            {{mon.viewValue}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <!-- Selector Status-->
+                                                <mat-form-field class="example-full-width">
+                                                    <mat-select placeholder="Estado" [(ngModel)]="myContact.status" name="status">
+                                                        <mat-option *ngFor="let mon of status" [value]="mon.value">
+                                                            {{mon.viewValue}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <!-- Selector Profession-->
+                                                <mat-form-field class="example-full-width">
+                                                    <input type="text" matInput placeholder="Profesión" value="" name="profession" [(ngModel)]='myContact.profession'>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </mat-tab>
+                            <mat-tab label="Curriculum"> Curriculum </mat-tab>
+                            <mat-tab label="Datos extras"> Datos extras </mat-tab>
+                        </mat-tab-group>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,8 +8,7 @@ export class Contact {
     birthday: Date;
     nationality: number;
     photoString: string;
-    profession: number;
-    profession_name: string;
+    profession: string;
     maritalStatus: number;
     status: number;
     status_name: string;
@@ -25,8 +24,7 @@ export class Contact {
         this.birthday = new Date();
         this.nationality = 0;
         this.photoString = '';
-        this.profession = 0;
-        this.profession_name = '';
+        this.profession = '';
         this.maritalStatus = 0;
         this.status = 0;
         this.status_name = '';
