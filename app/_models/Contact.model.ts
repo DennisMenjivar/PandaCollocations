@@ -13,6 +13,8 @@ export class Contact {
     status: number;
     status_name: string;
     paid: number;
+    country: string;
+    registerUser: string;
 
     constructor(id_company: number) {
         this.ID = 0;
@@ -29,5 +31,7 @@ export class Contact {
         this.status = 0;
         this.status_name = '';
         this.paid = 0;
+        this.country = '';
+        this.registerUser = '';
     }
 }

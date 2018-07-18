@@ -15,8 +15,6 @@ declare var $: any;
 })
 export class ContactsComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
   contactos: Contact[];
 
   membership: number = 0;
@@ -100,6 +98,12 @@ export class ContactsComponent implements OnInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+  }
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
 }
