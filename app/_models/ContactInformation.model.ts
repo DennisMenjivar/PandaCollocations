@@ -11,7 +11,7 @@ export class ContactInformation {
     travelAvailable: number;
     wageAspiration: number;
     negotiable: number;
-    city: number;
+    city: string;
     state: number;
     address: string;
 
@@ -28,7 +28,7 @@ export class ContactInformation {
         this.travelAvailable = 0;
         this.wageAspiration = 0;
         this.negotiable = 0;
-        this.city = 0;
+        this.city = '';
         this.state = 0;
         this.address = '';
     }

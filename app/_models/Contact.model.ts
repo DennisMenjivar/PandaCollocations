@@ -1,6 +1,3 @@
-import { ContactInformation } from "./ContactInformation.model";
-import { ContactAdditionalInformation } from "./ContactAdditionalInformation.model";
-
 export class Contact {
     ID: number;
     id_company: number;
@@ -18,8 +15,26 @@ export class Contact {
     paid: number;
     country: string;
     registerUser: string;
-    contactInformation: ContactInformation;
-    contactAdditionalInformation: ContactAdditionalInformation;
+
+    email: string;
+    telephoneNumberPrimary: string;
+    telephoneNumberSecondary: string;
+    academyLevel: number;
+    level: string;
+    interstArea: number;
+    schedulesAvailable: number;
+    travelAvailable: number;
+    wageAspiration: number;
+    negotiable: number;
+    city: string;
+    state: number;
+    address: string;
+
+    licence: number;
+    car: number;
+    licence_kind: number;
+    officeLevel: number;
+    dependents: string;
 
     constructor(id_company: number) {
         this.ID = 0;
@@ -38,7 +53,25 @@ export class Contact {
         this.paid = 0;
         this.country = '';
         this.registerUser = '';
-        this.contactInformation = new ContactInformation();
-        this.contactAdditionalInformation = new ContactAdditionalInformation();
+
+        this.email = '';
+        this.telephoneNumberPrimary = '';
+        this.telephoneNumberSecondary = '';
+        this.academyLevel = 0;
+        this.level = '';
+        this.interstArea = 0;
+        this.schedulesAvailable = 0;
+        this.travelAvailable = 0;
+        this.wageAspiration = 0;
+        this.negotiable = 0;
+        this.city = '';
+        this.state = 0;
+        this.address = '';
+
+        this.licence = 0;
+        this.car = 0;
+        this.licence_kind = 0;
+        this.officeLevel = 0;
+        this.dependents = '';
     }
 }

@@ -15,16 +15,16 @@ import { SubCategory } from '../../../../_models/SubCategory.model';
 export class CreateContactComponent implements OnInit {
 
   myContact: Contact;
-  myContactInformation: ContactInformation;
-  myContactAdditionalInformation: ContactAdditionalInformation;
 
   id_company: number = 0;
 
   gender = [{ value: 0, viewValue: 'Hombre' }, { value: 1, viewValue: 'Mujer' }];
-  nationality = [{ value: 0, viewValue: 'Honduras' }, { value: 1, viewValue: 'Guatemala' }];
+  nationality = [{ value: 0, viewValue: 'Honduras' }, { value: 1, viewValue: 'Extranjero' }];
   maritalStatus = [{ value: 0, viewValue: 'Soltero' }, { value: 1, viewValue: 'Casado' }, { value: 2, viewValue: 'Unión libre' }];
   status = [{ value: 0, viewValue: 'Pendiente' }, { value: 1, viewValue: 'Aprobado' }, { value: 2, viewValue: 'Contratado' }];
   academyLevel = [{ value: 0, viewValue: 'Primaria' }, { value: 1, viewValue: 'Secundaria' }, { value: 2, viewValue: 'Universitaria' }, { value: 3, viewValue: 'Doctorado' }];
+  schedulesAvailable = [{ value: 0, viewValue: 'SI' }, { value: 1, viewValue: 'NO' }];
+  states = [{ value: 0, viewValue: 'Cortes' }, { value: 1, viewValue: 'Atlántida' }, { value: 2, viewValue: 'Choluteca' }];
 
   categories: Category[];
   categorySelected: Category = new Category();
@@ -34,8 +34,6 @@ export class CreateContactComponent implements OnInit {
     if (JSON.parse(sessionStorage.getItem('currentUser'))) {
       this.id_company = JSON.parse(sessionStorage.getItem('currentUser')).id_company;
       this.myContact = new Contact(this.id_company);
-      this.myContactInformation = this.myContact.contactInformation;
-      this.myContactAdditionalInformation = this.myContact.contactAdditionalInformation;
     }
     if (_auxiliar.myContact != null) {
       this.myContact = _auxiliar.myContact;
@@ -51,7 +49,7 @@ export class CreateContactComponent implements OnInit {
   }
 
   getSubCategories() {
-    this.myContactInformation.interstArea = 0;
+    this.myContact.interstArea = 0;
     this.subCategories = [];
     this._auxiliar.getSubCategories(this.categorySelected).subscribe(result => {
       this.subCategories = result;
@@ -59,6 +57,7 @@ export class CreateContactComponent implements OnInit {
   }
 
   createContact() {
+    this.myContact.registerUser = JSON.parse(sessionStorage.getItem('currentUser')).username;
     this._auxiliar.setContact(this.myContact).subscribe(data => {
       this.goBack();
     });
