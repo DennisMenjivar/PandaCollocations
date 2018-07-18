@@ -1,3 +1,6 @@
+import { ContactInformation } from "./ContactInformation.model";
+import { ContactAdditionalInformation } from "./ContactAdditionalInformation.model";
+
 export class Contact {
     ID: number;
     id_company: number;
@@ -15,6 +18,8 @@ export class Contact {
     paid: number;
     country: string;
     registerUser: string;
+    contactInformation: ContactInformation;
+    contactAdditionalInformation: ContactAdditionalInformation;
 
     constructor(id_company: number) {
         this.ID = 0;
@@ -33,5 +38,7 @@ export class Contact {
         this.paid = 0;
         this.country = '';
         this.registerUser = '';
+        this.contactInformation = new ContactInformation();
+        this.contactAdditionalInformation = new ContactAdditionalInformation();
     }
 }

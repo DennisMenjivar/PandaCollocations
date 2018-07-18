@@ -99,7 +99,90 @@
                                     </form>
                                 </div>
                             </mat-tab>
-                            <mat-tab label="Curriculum"> Curriculum </mat-tab>
+                            <mat-tab label="Curriculum">
+                                <div style="padding: 1%">
+                                    <form *ngIf="myContact">
+                                        <br>
+                                        <!-- FILA 1 -->
+                                        <div class="row">
+                                            <!-- Text Field Email -->
+                                            <div class="col-sm-4">
+                                                <mat-form-field class="example-full-width">
+                                                    <input type="text" matInput placeholder="Email" value="" name="email" [(ngModel)]='myContactInformation.email'>
+                                                </mat-form-field>
+                                            </div>
+                                            <!-- Text Field Telefono Primario -->
+                                            <div class="col-sm-4">
+                                                <mat-form-field class="example-full-width">
+                                                    <input type="text" matInput placeholder="Teléfono primario" value="" name="telephoneNumberPrimary" [(ngModel)]='myContactInformation.telephoneNumberPrimary'>
+                                                </mat-form-field>
+                                            </div>
+                                            <!-- Text Field Telefono Secundario -->
+                                            <div class="col-sm-4">
+                                                <mat-form-field class="example-full-width">
+                                                    <input type="text" matInput placeholder="Teléfono secundario" value="" name="telephoneNumberSecondary" [(ngModel)]='myContactInformation.telephoneNumberSecondary'>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <!-- Selector Academy level-->
+                                                <mat-form-field class="example-full-width">
+                                                    <mat-select placeholder="Nivel educativo" [(ngModel)]="myContactInformation.academyLevel" name="academyLevel">
+                                                        <mat-option *ngFor="let mon of academyLevel" [value]="mon.value">
+                                                            {{mon.viewValue}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <!-- Text Field Level-->
+                                            <div class="col-sm-4">
+                                                <mat-form-field class="example-full-width">
+                                                    <input type="text" matInput placeholder="Porcentaje" value="" name="level" [(ngModel)]='myContactInformation.level'>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <!-- Selector Academy level-->
+                                                <mat-form-field class="example-full-width">
+                                                    <mat-select placeholder="Áreas Laborales" [(ngModel)]="categorySelected.ID" name="categories" (selectionChange)="getSubCategories()">
+                                                        <mat-option *ngFor="let mon of categories" [value]="mon.ID">
+                                                            {{mon.name}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <!-- Selector Academy level-->
+                                                <mat-form-field class="example-full-width">
+                                                    <mat-select placeholder="Profesión" [(ngModel)]="myContactInformation.interstArea" name="interstArea">
+                                                        <mat-option *ngFor="let mon of subCategories" [value]="mon.ID">
+                                                            {{mon.name}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <!-- Text Field Level-->
+                                            <div class="col-sm-4">
+                                                <!-- <mat-form-field class="example-full-width">
+                                                    <input type="text" matInput placeholder="Porcentaje" value="" name="level" [(ngModel)]='myContactInformation.level'>
+                                                </mat-form-field> -->
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <!-- Selector Academy level-->
+                                                <!-- <mat-form-field class="example-full-width">
+                                                    <mat-select placeholder="Áreas Laborales" [(ngModel)]="myContactInformation.interstArea" name="interstArea">
+                                                        <mat-option *ngFor="let mon of categories" [value]="mon.ID">
+                                                            {{mon.name}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field> -->
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </mat-tab>
                             <mat-tab label="Datos extras"> Datos extras </mat-tab>
                         </mat-tab-group>
                     </div>
