@@ -87,22 +87,6 @@ export class ContactsComponent implements OnInit {
   editContact(contact: Contact) {
     this._auxiliar.myContact = contact;
     this._auxiliar.myContact.id_company = this.id_company;
-    this._auxiliar.getContactInformation(contact).subscribe(data => {
-      this._auxiliar.myContact.email = data.email;
-      this._auxiliar.myContact.address = data.address;
-      this._auxiliar.myContact.telephoneNumberPrimary = data.telephoneNumberPrimary;
-      this._auxiliar.myContact.telephoneNumberSecondary = data.telephoneNumberSecondary;
-      this._auxiliar.myContact.academyLevel = data.academyLevel;
-      this._auxiliar.myContact.level = data.level;
-      this._auxiliar.myContact.interstArea = data.interstArea;
-      this._auxiliar.myContact.schedulesAvailable = data.schedulesAvailable;
-      this._auxiliar.myContact.travelAvailable = data.travelAvailable;
-      this._auxiliar.myContact.wageAspiration = data.wageAspiration;
-      this._auxiliar.myContact.negotiable = data.negotiable;
-      this._auxiliar.myContact.city = data.city;
-      this._auxiliar.myContact.state = data.state;
-      this._auxiliar.myContact.address = data.address;
-    })
     this.router.navigate(['/crm/crearContacto', this.id_company]);
   }
 
