@@ -40,7 +40,7 @@ export class CreateContactComponent implements OnInit {
     }
     if (_auxiliar.myContact != null) {
       this.myContact = _auxiliar.myContact;
-      this.title = 'Editar Contacto: ' + this.myContact.firstName + ' ' + this.myContact.lastName;
+      this.title = this.myContact.firstName + ' ' + this.myContact.lastName;
     }
   }
 

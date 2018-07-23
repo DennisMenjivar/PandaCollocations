@@ -34,7 +34,8 @@ export const ROUTES: RouteInfo[] = [{
     icontype: 'people',
     collapse: 'crm',
     children: [
-        { path: 'contactos', title: 'Contactos', ab: 'C' }
+        { path: 'contactos', title: 'Contactos', ab: 'C' },
+        { path: 'pandaList', title: 'Panda', ab: 'P' }
     ]
 }
     // ,{

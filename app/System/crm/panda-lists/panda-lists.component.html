@@ -1,0 +1,111 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-success card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">contacts</i>
+          </div>
+          <h4 class="card-title">Panda {{myNumber.minRangeNumber}}, Ganancia: {{(myNumber.lempiras * goodNumbers.length) + totalMumujas}}, GANANCIA
+            SEGURA: {{((myNumber.lempiras * goodNumbers.length) + totalMumujas)-(myNumber.lempiras * 90)}}</h4>
+        </div>
+        <div class="card-content">
+          <div class="content table-responsive">
+            <br>
+            <mat-tab-group>
+              <mat-tab label="Datos Generales">
+                <div style="padding: 1%">
+                  <form *ngIf="myNumber">
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <mat-form-field class="example-full-width">
+                          <input type="text" matInput placeholder="Lempiras" value="" name="lempiras" [(ngModel)]='myNumber.lempiras'>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-4">
+                        <mat-form-field class="example-full-width">
+                          <input type="number" matInput placeholder="# Lista" value="" name="lista_id" [(ngModel)]='myNumber.list_id'>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-4">
+                        <mat-form-field class="example-full-width">
+                          <input type="number" matInput placeholder="Vendedor" value="" name="seller_id" [(ngModel)]='myNumber.seller_id'>
+                        </mat-form-field>
+                      </div>
+                      <!-- <div class="col-sm-4">
+                        <mat-form-field class="example-full-width">
+                          <input type="text" matInput placeholder="Nombres" value="" name="firstName" [(ngModel)]='myContact.firstName'>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-4">
+                        <mat-form-field class="example-full-width">
+                          <input type="text" matInput placeholder="Apellidos" value="" name="lastName" [(ngModel)]='myContact.lastName'>
+                        </mat-form-field>
+                      </div> -->
+                    </div>
+                    <div class="row" style="padding: 2%">
+                      <div class="col-sm-4">
+                        <label for="result">Total Min Rango: {{myNumber.minRangeNumber}}</label>
+                        <ul *ngFor="let go of goodNumbers">
+                          <li>{{go.number}}-{{go.lempiras - myNumber.lempiras}}</li>
+                        </ul>
+                        <ul *ngFor="let mu of mumujas">
+                          <li>{{mu.number}}-0</li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-4">
+                        <label for="result">Mumujas: {{mumujas.length}}</label>
+                        <ul *ngFor="let mumu of mumujas">
+                          <li>{{mumu.number}}-{{mumu.lempiras}}</li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-4">
+                        <label for="result">Tomare Lps.{{myNumber.lempiras}}.00 de estos {{goodNumbers.length}} Numeros:</label>
+                        <ul *ngFor="let go of goodNumbers">
+                          <li>{{go.number}}-{{go.lempiras}}</li>
+                        </ul>
+                      </div>
+                      <button mat-button class="crx-button-primary" (click)="getMinRangeNumber()">
+                        <i class="material-icons crx-button-primary">add</i>
+                      </button>
+                    </div>
+                    <div class="row" style="padding: 2%">
+                      <div class="col-sm-4">
+                        <label for="result">Tomare Lps.{{myNumber.lempiras}}.00 de estos {{goodNumbers.length}} Numeros:</label>
+                        <ul *ngFor="let go of goodNumbers">
+                          <li>{{go.number}};{{myNumber.lempiras}}</li>
+                        </ul>
+                        <ul *ngFor="let mumu of mumujas">
+                          <li>{{mumu.number}};{{mumu.lempiras}}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="card" style="padding-top: 0%; margin-top: 1%; margin-bottom: 1%; border: 0%">
+      <div class="card-header card-header-success card-header-icon">
+          <h4 class="card-title">Área de Interés</h4>
+      </div>
+      <div style="padding: 1%">
+          <form *ngIf="myContact">
+              <div class="row">
+                  <div class="col-sm-12">
+
+                  </div>
+                  <div class="col-sm-12">
+
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div> -->

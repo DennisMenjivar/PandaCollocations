@@ -9,6 +9,7 @@ import { Contact } from '../_models/Contact.model';
 import { Category } from '../_models/Category.model';
 import { SubCategory } from '../_models/SubCategory.model';
 import { ContactInformation } from '../_models/ContactInformation.model';
+import { NumberModel } from '../_models/Number.model';
 
 @Injectable()
 
@@ -86,6 +87,39 @@ export class ColocationService {
 
     return this._http.post(this.current_api + 'api/colocatechapi/getSubcategories/', body, requestOptions).map((data: Response) => {
       return data.json() as SubCategory[];
+    });
+  }
+  // PANDA
+  getMinRangeNumber(number: NumberModel) {
+    var body = JSON.stringify(number);
+
+    var headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/colocatechapi/getMinRangeNumber/', body, requestOptions).map((data: Response) => {
+      return data.json() as NumberModel;
+    });
+  }
+
+  getMumujas(number: NumberModel) {
+    var body = JSON.stringify(number);
+
+    var headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/colocatechapi/getMumujas/', body, requestOptions).map((data: Response) => {
+      return data.json() as NumberModel[];
+    });
+  }
+
+  getGoodNumbers(number: NumberModel) {
+    var body = JSON.stringify(number);
+
+    var headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/colocatechapi/setSureNumbers/', body, requestOptions).map((data: Response) => {
+      return data.json() as NumberModel[];
     });
   }
 }

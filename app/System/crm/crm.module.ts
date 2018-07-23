@@ -6,6 +6,7 @@ import { MaterialModule } from '../../app.module';
 import { ContactsComponent } from './Contacts/contacts/contacts.component';
 import { CrmRoutes } from './crm.routing';
 import { CreateContactComponent } from '../../System/crm/Contacts/create-contact/create-contact.component';
+import { PandaListsComponent } from '../../System/crm/panda-lists/panda-lists.component';
 
 @NgModule({
     imports: [
@@ -20,6 +21,7 @@ import { CreateContactComponent } from '../../System/crm/Contacts/create-contact
     declarations: [
         ContactsComponent,
         CreateContactComponent,
+        PandaListsComponent,
     ],
     entryComponents: [
 
