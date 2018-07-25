@@ -10,6 +10,8 @@ import { MatDialog } from '../../../../../../node_modules/@angular/material';
 import { ExperienceEditDialogComponent } from '../experience-edit-dialog/experience-edit-dialog.component';
 import { MatPaginator, MatTableDataSource, DateAdapter } from '@angular/material';
 import { Experience } from '../../../../_models/Experience.model';
+import { Language } from '../../../../_models/Language.model';
+import { LanguageEditDialogComponent } from '../language-edit-dialog/language-edit-dialog.component';
 
 @Component({
   selector: 'app-create-contact',
@@ -22,6 +24,9 @@ export class CreateContactComponent implements OnInit {
 
   dataSource = new MatTableDataSource<Experience>();
   displayedColumns = ['ID', 'Company', 'functions', 'salary', 'fromString', 'until', 'editar'];
+
+  dataSourceLanguages = new MatTableDataSource<Language>();
+  displayedColumnsLanguages = ['ID', 'Lenguaje', 'Nivel', 'editar'];
 
   myContact: Contact;
 
@@ -81,6 +86,7 @@ export class CreateContactComponent implements OnInit {
           this._auxiliar.myContact.city = data.city;
           this._auxiliar.myContact.state = data.state;
           this._auxiliar.myContact.address = data.address;
+          this.getLaboralExperiences();
         });
       }
     })
@@ -114,12 +120,54 @@ export class CreateContactComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
-        // this.getVariables();
+        this.getLaboralExperiences();
       }
     });
   }
 
   editLaboralExperience(experience: Experience) {
+    let dialogRef = this.dialog.open(ExperienceEditDialogComponent, {
+      width: '500px',
+      data: {
+        myContact: this.myContact,
+        experience: experience
+      }
 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.getLaboralExperiences();
+      }
+    });
+  }
+
+  getLaboralExperiences() {
+    this._auxiliar.getLaboralExperiences(this.myContact).subscribe(result => {
+      this.dataSource.data = result;
+      this.getLanguages();
+    })
+  }
+
+  getLanguages() {
+    this._auxiliar.getLanguages(this.myContact).subscribe(result => {
+      this.dataSourceLanguages.data = result;
+    })
+  }
+
+  addLanguage() {
+    let dialogRef = this.dialog.open(LanguageEditDialogComponent, {
+      width: '500px',
+      data: {
+        myContact: this.myContact
+      }
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.getLanguages();
+      }
+    });
   }
 }

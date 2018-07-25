@@ -11,6 +11,7 @@ import { SubCategory } from '../_models/SubCategory.model';
 import { ContactInformation } from '../_models/ContactInformation.model';
 import { NumberModel } from '../_models/Number.model';
 import { Experience } from '../_models/Experience.model';
+import { Language } from '../_models/Language.model';
 
 @Injectable()
 
@@ -35,9 +36,31 @@ export class ColocationService {
     });
   }
 
+  // LANGUAGES
+  getLanguages(contact: Contact) {
+    var body = JSON.stringify(contact);
+
+    var headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/colocatechapi/getLanguages/', body, requestOptions).map((data: Response) => {
+      return data.json() as Language[];
+    });
+  }
+
+  setLanguages(language: Language) {
+    var body = JSON.stringify(language);
+    var headerOptions = new Headers({ 'Content-type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/colocatechapi/setLanguage/', body, requestOptions).map((data: Response) => {
+      return 1;
+    });
+  }
+
   // EXPERIENCES
-  getLaboralExperiences(experience: Experience) {
-    var body = JSON.stringify(experience);
+  getLaboralExperiences(contact: Contact) {
+    var body = JSON.stringify(contact);
 
     var headerOptions = new Headers({ 'Content-Type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })

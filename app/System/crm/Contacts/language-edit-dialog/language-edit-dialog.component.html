@@ -1,0 +1,27 @@
+<div class="row" style="width: 100%; background-color: white; padding: 0%; margin: 0%; border: 0%">
+  <div style="width: 100%; background-color: white">
+    <!-- NOMBRE DE LA VARIABLE -->
+    <mat-form-field style="width: 100%; background-color: white">
+      <input matInput placeholder="Lenguaje" [(ngModel)]="myLanguaje.lenguage" name="languaje">
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%; background-color: white">
+      <mat-select placeholder="Nivel" [(ngModel)]="myLanguaje.level" name="level">
+        <mat-option *ngFor="let mon of levels" [value]="mon.value">
+          {{mon.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- BOTONES -->
+    <div class="row" style="background-color: white; padding: 0%; margin: 0%; border: 0%">
+      <div class="col-sm-6" style="width: 100%; background-color: rgb(207, 12, 45); padding: 0%; margin: 0%; border: 0%; color: white"
+        *ngIf="myLanguaje.lenguage != ''">
+        <button mat-button [mat-dialog-close]="true" style="width: 100%;" (click)="setLanguage()">Guardar</button>
+      </div>
+      <div class="col-sm-6" style="background-color: white; padding: 0%; margin: 0%; border: 0%">
+        <button mat-button [mat-dialog-close]="true" style="width: 100%;background-color: white">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

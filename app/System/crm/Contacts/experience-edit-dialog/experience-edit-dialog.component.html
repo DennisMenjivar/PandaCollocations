@@ -27,7 +27,7 @@
 
     <!-- BOTONES -->
     <div class="row" style="background-color: white; padding: 0%; margin: 0%; border: 0%">
-      <div class="col-sm-6" style="width: 100%; background-color: rgb(207, 12, 45); padding: 0%; margin: 0%; border: 0%; color: white">
+      <div class="col-sm-6" style="width: 100%; background-color: rgb(207, 12, 45); padding: 0%; margin: 0%; border: 0%; color: white" *ngIf="myExperience.company != '' && myExperience.salary && myExperience.functions != ''">
         <button mat-button [mat-dialog-close]="true" style="width: 100%;" (click)="setLaboralExperience()">Guardar</button>
       </div>
       <div class="col-sm-6" style="background-color: white; padding: 0%; margin: 0%; border: 0%">

@@ -18,7 +18,9 @@ export class ExperienceEditDialogComponent implements OnInit {
     , @Inject(MAT_DIALOG_DATA) public data: any) {
     if (this.data) {
       this.myContact = this.data.myContact;
-      // this.miRamo = this.data.miRamo;
+    }
+    if (this.data.experience) {
+      this.myExperience = this.data.experience;
     }
   }
 

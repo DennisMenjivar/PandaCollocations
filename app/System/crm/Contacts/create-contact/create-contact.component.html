@@ -320,14 +320,14 @@
                                                 <!-- Email Column -->
                                                 <ng-container matColumnDef="salary">
                                                     <mat-header-cell *matHeaderCellDef> Salario </mat-header-cell>
-                                                    <mat-cell *matCellDef="let element"> {{element.salary}} </mat-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.salary | currency:'Lps.':true:'1.2-2'}} </mat-cell>
                                                 </ng-container>
 
                                                 <!-- Email Column -->
                                                 <ng-container matColumnDef="fromString">
                                                     <mat-header-cell *matHeaderCellDef> Desde </mat-header-cell>
                                                     <mat-cell *matCellDef="let element">
-                                                        {{element.fromString}}
+                                                        {{element.fromString | date: 'dd/MM/yyyy'}}
                                                     </mat-cell>
                                                 </ng-container>
 
@@ -335,7 +335,7 @@
                                                 <ng-container matColumnDef="until">
                                                     <mat-header-cell *matHeaderCellDef> Hasta </mat-header-cell>
                                                     <mat-cell *matCellDef="let element">
-                                                        {{element.until}}
+                                                        {{element.until | date: 'dd/MM/yyyy'}}
                                                     </mat-cell>
                                                 </ng-container>
 
@@ -351,6 +351,48 @@
 
                                                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                                                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                                            </mat-table>
+                                        </div>
+                                    </div>
+                                    <div class="card" style="padding-top: 0%; margin-top: 1%; margin-bottom: 1%; border: 0%">
+                                        <div class="card-header card-header-success card-header-icon">
+                                            <h4 class="card-title">Idiomas</h4>
+                                            <button mat-button class="crx-button-primary" (click)="addLanguage()">
+                                                <i class="material-icons crx-button-primary">add</i>
+                                            </button>
+                                        </div>
+                                        <div style="padding: 1%">
+                                            <mat-table #tableL [dataSource]="dataSourceLanguages">
+                                                <!-- Nombre Column -->
+                                                <ng-container matColumnDef="ID">
+                                                    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.ID}} </mat-cell>
+                                                </ng-container>
+
+                                                <!-- Telefono Column -->
+                                                <ng-container matColumnDef="Lenguaje">
+                                                    <mat-header-cell *matHeaderCellDef> Lenguaje </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.lenguage}} </mat-cell>
+                                                </ng-container>
+
+                                                <!-- Celular Column -->
+                                                <ng-container matColumnDef="Nivel">
+                                                    <mat-header-cell *matHeaderCellDef> Nivel </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.level}} </mat-cell>
+                                                </ng-container>
+
+                                                <!-- Botones de Editar -->
+                                                <ng-container matColumnDef="editar">
+                                                    <mat-header-cell *matHeaderCellDef>Editar</mat-header-cell>
+                                                    <mat-cell *matCellDef="let pro">
+                                                        <button mat-icon-button color="primary" (click)="editLaboralExperience(pro)">
+                                                            <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
+                                                        </button>
+                                                    </mat-cell>
+                                                </ng-container>
+
+                                                <mat-header-row *matHeaderRowDef="displayedColumnsLanguages"></mat-header-row>
+                                                <mat-row *matRowDef="let row; columns: displayedColumnsLanguages;"></mat-row>
                                             </mat-table>
                                         </div>
                                     </div>
