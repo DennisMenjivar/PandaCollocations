@@ -10,6 +10,7 @@ import { Category } from '../_models/Category.model';
 import { SubCategory } from '../_models/SubCategory.model';
 import { ContactInformation } from '../_models/ContactInformation.model';
 import { NumberModel } from '../_models/Number.model';
+import { Experience } from '../_models/Experience.model';
 
 @Injectable()
 
@@ -33,6 +34,29 @@ export class ColocationService {
       return data.json() as Login;
     });
   }
+
+  // EXPERIENCES
+  getLaboralExperiences(experience: Experience) {
+    var body = JSON.stringify(experience);
+
+    var headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/colocatechapi/getLaboralExperiences/', body, requestOptions).map((data: Response) => {
+      return data.json() as Experience[];
+    });
+  }
+
+  setLaboralExperience(experience: Experience) {
+    var body = JSON.stringify(experience);
+    var headerOptions = new Headers({ 'Content-type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/colocatechapi/setLaboralExperience/', body, requestOptions).map((data: Response) => {
+      return 1;
+    });
+  }
+
   // CONTACTS
   getContacts(contact: Contact) {
     var body = JSON.stringify(contact);
@@ -118,7 +142,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-Type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/setSureNumbers/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/colocatechapi/getSureNumbers/', body, requestOptions).map((data: Response) => {
       return data.json() as NumberModel[];
     });
   }

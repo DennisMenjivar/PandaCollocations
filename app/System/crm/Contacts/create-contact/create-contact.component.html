@@ -293,16 +293,65 @@
                                     <div class="card" style="padding-top: 0%; margin-top: 1%; margin-bottom: 1%; border: 0%">
                                         <div class="card-header card-header-success card-header-icon">
                                             <h4 class="card-title">Experiencia laboral</h4>
-                                            <button mat-button class="crx-button-primary" (click)="createContact()">
+                                            <button mat-button class="crx-button-primary" (click)="openDialog()">
                                                 <i class="material-icons crx-button-primary">add</i>
                                             </button>
                                         </div>
                                         <div style="padding: 1%">
-                                            <form *ngIf="myContact">
-                                                <mat-form-field class="example-full-width">
-                                                    <input type="text" matInput placeholder="Dirección" value="" name="address" [(ngModel)]='myContact.address'>
-                                                </mat-form-field>
-                                            </form>
+                                            <mat-table #table [dataSource]="dataSource">
+                                                <!-- Nombre Column -->
+                                                <ng-container matColumnDef="ID">
+                                                    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.ID}} </mat-cell>
+                                                </ng-container>
+
+                                                <!-- Telefono Column -->
+                                                <ng-container matColumnDef="Company">
+                                                    <mat-header-cell *matHeaderCellDef> Empresa </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.company}} </mat-cell>
+                                                </ng-container>
+
+                                                <!-- Celular Column -->
+                                                <ng-container matColumnDef="functions">
+                                                    <mat-header-cell *matHeaderCellDef> Función </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.functions}} </mat-cell>
+                                                </ng-container>
+
+                                                <!-- Email Column -->
+                                                <ng-container matColumnDef="salary">
+                                                    <mat-header-cell *matHeaderCellDef> Salario </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.salary}} </mat-cell>
+                                                </ng-container>
+
+                                                <!-- Email Column -->
+                                                <ng-container matColumnDef="fromString">
+                                                    <mat-header-cell *matHeaderCellDef> Desde </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element">
+                                                        {{element.fromString}}
+                                                    </mat-cell>
+                                                </ng-container>
+
+                                                <!-- Email Column -->
+                                                <ng-container matColumnDef="until">
+                                                    <mat-header-cell *matHeaderCellDef> Hasta </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element">
+                                                        {{element.until}}
+                                                    </mat-cell>
+                                                </ng-container>
+
+                                                <!-- Botones de Editar -->
+                                                <ng-container matColumnDef="editar">
+                                                    <mat-header-cell *matHeaderCellDef>Editar</mat-header-cell>
+                                                    <mat-cell *matCellDef="let pro">
+                                                        <button mat-icon-button color="primary" (click)="editLaboralExperience(pro)">
+                                                            <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
+                                                        </button>
+                                                    </mat-cell>
+                                                </ng-container>
+
+                                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                                            </mat-table>
                                         </div>
                                     </div>
                                 </div>

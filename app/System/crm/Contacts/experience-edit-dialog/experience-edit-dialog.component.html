@@ -1,0 +1,38 @@
+<div class="row" style="width: 100%; background-color: white; padding: 0%; margin: 0%; border: 0%">
+  <div style="width: 100%; background-color: white">
+    <!-- NOMBRE DE LA VARIABLE -->
+    <mat-form-field style="width: 100%; background-color: white">
+      <input matInput placeholder="Empresa" [(ngModel)]="myExperience.company" name="company">
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%; background-color: white">
+      <input matInput type="number" placeholder="Salario" [(ngModel)]="myExperience.salary" name="salary">
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%; background-color: white">
+      <input matInput placeholder="Funcines" [(ngModel)]="myExperience.functions" name="functions">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput [matDatepicker]="from" placeholder="Desde" name="from" [(ngModel)]="myExperience.fromString">
+      <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+      <mat-datepicker #from></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput [matDatepicker]="until" placeholder="Hasta" name="until" [(ngModel)]="myExperience.until">
+      <mat-datepicker-toggle matSuffix [for]="until"></mat-datepicker-toggle>
+      <mat-datepicker #until></mat-datepicker>
+    </mat-form-field>
+
+    <!-- BOTONES -->
+    <div class="row" style="background-color: white; padding: 0%; margin: 0%; border: 0%">
+      <div class="col-sm-6" style="width: 100%; background-color: rgb(207, 12, 45); padding: 0%; margin: 0%; border: 0%; color: white">
+        <button mat-button [mat-dialog-close]="true" style="width: 100%;" (click)="setLaboralExperience()">Guardar</button>
+      </div>
+      <div class="col-sm-6" style="background-color: white; padding: 0%; margin: 0%; border: 0%">
+        <button mat-button [mat-dialog-close]="true" style="width: 100%;background-color: white">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

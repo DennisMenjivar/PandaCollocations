@@ -7,6 +7,7 @@ import { ContactsComponent } from './Contacts/contacts/contacts.component';
 import { CrmRoutes } from './crm.routing';
 import { CreateContactComponent } from '../../System/crm/Contacts/create-contact/create-contact.component';
 import { PandaListsComponent } from '../../System/crm/panda-lists/panda-lists.component';
+import { ExperienceEditDialogComponent } from '../../System/crm/Contacts/experience-edit-dialog/experience-edit-dialog.component';
 
 @NgModule({
     imports: [
@@ -22,9 +23,10 @@ import { PandaListsComponent } from '../../System/crm/panda-lists/panda-lists.co
         ContactsComponent,
         CreateContactComponent,
         PandaListsComponent,
+        ExperienceEditDialogComponent,
     ],
     entryComponents: [
-
+        ExperienceEditDialogComponent
     ],
     exports: [
 

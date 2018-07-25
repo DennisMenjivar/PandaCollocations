@@ -6,6 +6,10 @@ import { ContactInformation } from '../../../../_models/ContactInformation.model
 import { ContactAdditionalInformation } from '../../../../_models/ContactAdditionalInformation.model';
 import { Category } from '../../../../_models/Category.model';
 import { SubCategory } from '../../../../_models/SubCategory.model';
+import { MatDialog } from '../../../../../../node_modules/@angular/material';
+import { ExperienceEditDialogComponent } from '../experience-edit-dialog/experience-edit-dialog.component';
+import { MatPaginator, MatTableDataSource, DateAdapter } from '@angular/material';
+import { Experience } from '../../../../_models/Experience.model';
 
 @Component({
   selector: 'app-create-contact',
@@ -15,6 +19,9 @@ import { SubCategory } from '../../../../_models/SubCategory.model';
 export class CreateContactComponent implements OnInit {
 
   title: string = 'Crear Contacto';
+
+  dataSource = new MatTableDataSource<Experience>();
+  displayedColumns = ['ID', 'Company', 'functions', 'salary', 'fromString', 'until', 'editar'];
 
   myContact: Contact;
 
@@ -32,7 +39,7 @@ export class CreateContactComponent implements OnInit {
   categorySelected: Category = new Category();
   subCategories: SubCategory[];
 
-  constructor(public router: Router, public _auxiliar: ColocationService) {
+  constructor(public router: Router, public _auxiliar: ColocationService, public dialog: MatDialog) {
     this.getCategories();
     if (JSON.parse(sessionStorage.getItem('currentUser'))) {
       this.id_company = JSON.parse(sessionStorage.getItem('currentUser')).id_company;
@@ -92,5 +99,27 @@ export class CreateContactComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  openDialog(): void {
+    let dialogRef = this.dialog.open(ExperienceEditDialogComponent, {
+      width: '500px',
+      data: {
+        myContact: this.myContact
+        // , miRamo: this.ramo
+        // , miAseguradora: this.miAseguradora
+      }
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        // this.getVariables();
+      }
+    });
+  }
+
+  editLaboralExperience(experience: Experience) {
+
   }
 }
