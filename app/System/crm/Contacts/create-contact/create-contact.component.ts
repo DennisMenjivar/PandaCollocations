@@ -12,6 +12,8 @@ import { MatPaginator, MatTableDataSource, DateAdapter } from '@angular/material
 import { Experience } from '../../../../_models/Experience.model';
 import { Language } from '../../../../_models/Language.model';
 import { LanguageEditDialogComponent } from '../language-edit-dialog/language-edit-dialog.component';
+import { Study } from '../../../../_models/Study.model';
+import { StudyEditDialogComponent } from '../study-edit-dialog/study-edit-dialog.component';
 
 @Component({
   selector: 'app-create-contact',
@@ -28,6 +30,9 @@ export class CreateContactComponent implements OnInit {
   dataSourceLanguages = new MatTableDataSource<Language>();
   displayedColumnsLanguages = ['ID', 'Lenguaje', 'Nivel', 'editar'];
 
+  dataSourceStudies = new MatTableDataSource<Study>();
+  displayedColumnsStudies = ['ID', 'study', 'institute', 'kind', 'editar'];
+
   myContact: Contact;
 
   id_company: number = 0;
@@ -43,6 +48,7 @@ export class CreateContactComponent implements OnInit {
   categories: Category[];
   categorySelected: Category = new Category();
   subCategories: SubCategory[];
+  studies: Study[];
 
   constructor(public router: Router, public _auxiliar: ColocationService, public dialog: MatDialog) {
     this.getCategories();
@@ -54,6 +60,27 @@ export class CreateContactComponent implements OnInit {
       this.myContact = _auxiliar.myContact;
       this.title = this.myContact.firstName + ' ' + this.myContact.lastName;
     }
+    // Cargo el detalle despues de haberse cargado las subcategorias
+    if (this.myContact.ID != 0) {
+      this._auxiliar.getContactInformation(this.myContact).subscribe(data => {
+        this._auxiliar.myContact.email = data.email;
+        this._auxiliar.myContact.address = data.address;
+        this._auxiliar.myContact.telephoneNumberPrimary = data.telephoneNumberPrimary;
+        this._auxiliar.myContact.telephoneNumberSecondary = data.telephoneNumberSecondary;
+        this._auxiliar.myContact.academyLevel = data.academyLevel;
+        this._auxiliar.myContact.level = data.level;
+        this._auxiliar.myContact.interstArea = data.interstArea;
+        this._auxiliar.myContact.schedulesAvailable = data.schedulesAvailable;
+        this._auxiliar.myContact.travelAvailable = data.travelAvailable;
+        this._auxiliar.myContact.wageAspiration = data.wageAspiration;
+        this._auxiliar.myContact.negotiable = data.negotiable;
+        this._auxiliar.myContact.city = data.city;
+        this._auxiliar.myContact.state = data.state;
+        this._auxiliar.myContact.address = data.address;
+        this.getLaboralExperiences();
+      });
+    }
+    this.getStudies();
   }
 
   getCategories() {
@@ -69,26 +96,6 @@ export class CreateContactComponent implements OnInit {
     this.subCategories = [];
     this._auxiliar.getSubCategories(this.categorySelected).subscribe(result => {
       this.subCategories = result;
-      // Cargo el detalle despues de haberse cargado las subcategorias
-      if (this.myContact.ID != 0) {
-        this._auxiliar.getContactInformation(this.myContact).subscribe(data => {
-          this._auxiliar.myContact.email = data.email;
-          this._auxiliar.myContact.address = data.address;
-          this._auxiliar.myContact.telephoneNumberPrimary = data.telephoneNumberPrimary;
-          this._auxiliar.myContact.telephoneNumberSecondary = data.telephoneNumberSecondary;
-          this._auxiliar.myContact.academyLevel = data.academyLevel;
-          this._auxiliar.myContact.level = data.level;
-          this._auxiliar.myContact.interstArea = data.interstArea;
-          this._auxiliar.myContact.schedulesAvailable = data.schedulesAvailable;
-          this._auxiliar.myContact.travelAvailable = data.travelAvailable;
-          this._auxiliar.myContact.wageAspiration = data.wageAspiration;
-          this._auxiliar.myContact.negotiable = data.negotiable;
-          this._auxiliar.myContact.city = data.city;
-          this._auxiliar.myContact.state = data.state;
-          this._auxiliar.myContact.address = data.address;
-          this.getLaboralExperiences();
-        });
-      }
     })
   }
 
@@ -155,6 +162,23 @@ export class CreateContactComponent implements OnInit {
     })
   }
 
+  editLanguage(language: Language) {
+    let dialogRef = this.dialog.open(LanguageEditDialogComponent, {
+      width: '500px',
+      data: {
+        myContact: this.myContact,
+        language: language
+      }
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.getLanguages();
+      }
+    });
+  }
+
   addLanguage() {
     let dialogRef = this.dialog.open(LanguageEditDialogComponent, {
       width: '500px',
@@ -167,6 +191,31 @@ export class CreateContactComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
         this.getLanguages();
+      }
+    });
+  }
+
+  getStudies() {
+    this.studies = [];
+    this._auxiliar.getStudies(this.myContact).subscribe(data => {
+      this.studies = data;
+      this.dataSourceStudies.data = data;
+    })
+  }
+
+  editStudy(pStudy: Study) {
+    let dialogRef = this.dialog.open(StudyEditDialogComponent, {
+      width: '500px',
+      data: {
+        myContact: this.myContact,
+        study: pStudy
+      }
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.getStudies();
       }
     });
   }

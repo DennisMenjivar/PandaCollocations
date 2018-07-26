@@ -12,6 +12,7 @@ import { ContactInformation } from '../_models/ContactInformation.model';
 import { NumberModel } from '../_models/Number.model';
 import { Experience } from '../_models/Experience.model';
 import { Language } from '../_models/Language.model';
+import { Study } from '../_models/Study.model';
 
 @Injectable()
 
@@ -76,6 +77,28 @@ export class ColocationService {
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
     return this._http.post(this.current_api + 'api/colocatechapi/setLaboralExperience/', body, requestOptions).map((data: Response) => {
+      return 1;
+    });
+  }
+
+  // STUDIES
+  getStudies(contact: Contact) {
+    var body = JSON.stringify(contact);
+
+    var headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/colocatechapi/getStudies/', body, requestOptions).map((data: Response) => {
+      return data.json() as Study[];
+    });
+  }
+
+  setStudy(study: Study) {
+    var body = JSON.stringify(study);
+    var headerOptions = new Headers({ 'Content-type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/colocatechapi/setStudy/', body, requestOptions).map((data: Response) => {
       return 1;
     });
   }

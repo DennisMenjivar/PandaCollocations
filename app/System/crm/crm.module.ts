@@ -9,6 +9,7 @@ import { CreateContactComponent } from '../../System/crm/Contacts/create-contact
 import { PandaListsComponent } from '../../System/crm/panda-lists/panda-lists.component';
 import { ExperienceEditDialogComponent } from '../../System/crm/Contacts/experience-edit-dialog/experience-edit-dialog.component';
 import { LanguageEditDialogComponent } from '../../System/crm/Contacts/language-edit-dialog/language-edit-dialog.component';
+import { StudyEditDialogComponent } from '../../System/crm/Contacts/study-edit-dialog/study-edit-dialog.component';
 
 @NgModule({
     imports: [
@@ -26,10 +27,12 @@ import { LanguageEditDialogComponent } from '../../System/crm/Contacts/language-
         PandaListsComponent,
         ExperienceEditDialogComponent,
         LanguageEditDialogComponent,
+        StudyEditDialogComponent,
     ],
     entryComponents: [
         ExperienceEditDialogComponent,
-        LanguageEditDialogComponent
+        LanguageEditDialogComponent,
+        StudyEditDialogComponent
     ],
     exports: [
 
