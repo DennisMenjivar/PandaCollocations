@@ -192,4 +192,13 @@ export class ColocationService {
       return data.json() as NumberModel[];
     });
   }
+
+  setImage(f: FormData) {
+    let headers = new Headers();
+    let options = new RequestOptions({ headers: headers });
+    this._http.post(this.current_api + 'api/colocatechapi/UploadJsonFile/', f, options).subscribe(
+      data => console.log('success', data),
+      error => console.log(error)
+    );
+  }
 }

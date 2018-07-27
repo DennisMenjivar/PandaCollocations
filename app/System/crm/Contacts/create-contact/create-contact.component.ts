@@ -51,7 +51,6 @@ export class CreateContactComponent implements OnInit {
   studies: Study[];
 
   constructor(public router: Router, public _auxiliar: ColocationService, public dialog: MatDialog) {
-    this.getCategories();
     if (JSON.parse(sessionStorage.getItem('currentUser'))) {
       this.id_company = JSON.parse(sessionStorage.getItem('currentUser')).id_company;
       this.myContact = new Contact(this.id_company);
@@ -60,6 +59,7 @@ export class CreateContactComponent implements OnInit {
       this.myContact = _auxiliar.myContact;
       this.title = this.myContact.firstName + ' ' + this.myContact.lastName;
     }
+    this.getCategories();
     // Cargo el detalle despues de haberse cargado las subcategorias
     if (this.myContact.ID != 0) {
       this._auxiliar.getContactInformation(this.myContact).subscribe(data => {
@@ -219,4 +219,20 @@ export class CreateContactComponent implements OnInit {
       }
     });
   }
+
+  fileChange(event) {
+    let fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      let file: File = fileList[0];
+      let formData: FormData = new FormData();
+      this.name = this.path + file.name;
+      formData.append('uploadFile', file, file.name);
+      this._auxiliar.setImage(formData);
+      this.isUploadBtn = true;
+    }
+  }
+
+  isUploadBtn: boolean;
+  name: string;
+  path: string = "http://grandappapi.grandapp.xyz/Photos/";
 }

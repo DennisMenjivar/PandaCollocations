@@ -96,6 +96,33 @@
                                                 </mat-form-field>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                                <div class="fileinput-new thumbnail">
+                                                    <img src="../../assets/img/image_placeholder.jpg" alt="...">
+                                                </div>
+                                                <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                                                <div>
+                                                    <span class="btn btn-rose btn-round btn-file">
+                                                        <span class="fileinput-new">Seleccionar Imagen</span>
+                                                        <span class="fileinput-exists">Cambiar</span>
+                                                        <!-- <input type="file" name="..." /> -->
+                                                        <input type="file" id="btnUpload" value="Upload" (change)="fileChange($event)" class="upload"/>
+                                                    </span>
+                                                    <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
+                                                        <i class="fa fa-times"></i> Remove</a>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-sm-6">
+                                                <div class="fileUpload btn btn-primary">
+                                                    <span>Upload</span>
+                                                    <input type="file" id="btnUpload" value="Upload" (change)="fileChange($event)" class="upload" />
+                                                </div>
+
+                                                <img *ngIf="isUploadBtn" src="{{name}}" style="margin-top:5%;margin-bottom:10%; display:block;margin-left: auto;margin-right:auto"
+                                                />
+                                            </div> -->
+                                        </div>
                                     </form>
                                 </div>
                             </mat-tab>
@@ -423,8 +450,8 @@
                                                     <mat-cell *matCellDef="let element"> {{element.institute}} </mat-cell>
                                                 </ng-container>
 
-                                                 <!-- Celular Column -->
-                                                 <ng-container matColumnDef="kind">
+                                                <!-- Celular Column -->
+                                                <ng-container matColumnDef="kind">
                                                     <mat-header-cell *matHeaderCellDef> Nivel </mat-header-cell>
                                                     <mat-cell *matCellDef="let element"> {{element.kind}} </mat-cell>
                                                 </ng-container>
