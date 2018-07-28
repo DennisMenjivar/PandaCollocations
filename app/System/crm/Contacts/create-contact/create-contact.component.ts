@@ -62,6 +62,7 @@ export class CreateContactComponent implements OnInit {
     this.getCategories();
     // Cargo el detalle despues de haberse cargado las subcategorias
     if (this.myContact.ID != 0) {
+      this.imageName = 'http://grandappapi.grandapp.xyz/Photos/' + this.myContact.ID + '.jpg';
       this._auxiliar.getContactInformation(this.myContact).subscribe(data => {
         this._auxiliar.myContact.email = data.email;
         this._auxiliar.myContact.address = data.address;
@@ -102,7 +103,11 @@ export class CreateContactComponent implements OnInit {
   createContact() {
     this.myContact.registerUser = JSON.parse(sessionStorage.getItem('currentUser')).username;
     this._auxiliar.setContact(this.myContact).subscribe(data => {
-      this.goBack();
+      this.myContact.ID = data;
+      this.setImage(data.toString() + ".jpg");
+      this.title = this.myContact.firstName + " " + this.myContact.lastName;
+    }, error => {
+      console.log("Error al guardar: ", error);
     });
   }
 
@@ -220,16 +225,32 @@ export class CreateContactComponent implements OnInit {
     });
   }
 
-  fileChange(event) {
+  // fileChange(event) {
+  //   let fileList: FileList = event.target.files;
+  //   if (fileList.length > 0) {
+  //     let file: File = fileList[0];
+  //     let formData: FormData = new FormData();
+  //     this.name = this.path + file.name;
+  //     formData.append('uploadFile', file, file.name);
+  //     this._auxiliar.setImage(formData);
+  //     this.isUploadBtn = true;
+  //   }
+  // }
+  imageName: string = '../../assets/img/image_placeholder.jpg';
+  formData: FormData = new FormData();
+  file: File;
+  getFile(event) {
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
-      let file: File = fileList[0];
-      let formData: FormData = new FormData();
-      this.name = this.path + file.name;
-      formData.append('uploadFile', file, file.name);
-      this._auxiliar.setImage(formData);
+      this.file = fileList[0];
+      this.name = this.path + this.file.name;
       this.isUploadBtn = true;
     }
+  }
+
+  setImage(fileName: string) {
+    this.formData.append('uploadFile', this.file, fileName);
+    this._auxiliar.setImage(this.formData);
   }
 
   isUploadBtn: boolean;

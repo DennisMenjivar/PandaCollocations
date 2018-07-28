@@ -24,6 +24,33 @@
                                         <br>
                                         <div class="row">
                                             <div class="col-sm-4">
+                                                <!-- SECCION 1 -->
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <!-- IMAGE -->
+                                                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                                    <div class="fileinput-new thumbnail">
+                                                        <img src="{{imageName}}" alt="...">
+                                                    </div>
+                                                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                                                    <div>
+                                                        <span class="btn btn-rose btn-round btn-file">
+                                                            <span class="fileinput-new">Seleccionar Imagen</span>
+                                                            <span class="fileinput-exists">Cambiar</span>
+                                                            <!-- <input type="file" name="..." /> -->
+                                                            <input type="file" id="btnUpload" value="Upload" (change)="getFile($event)" class="upload" />
+                                                        </span>
+                                                        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
+                                                            <i class="fa fa-times"></i> Remove</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <!-- Seccion 3 -->
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
                                                 <mat-form-field class="example-full-width">
                                                     <input type="text" matInput placeholder="Identidad" value="" name="identity" [(ngModel)]='myContact.identity'>
                                                 </mat-form-field>
@@ -97,22 +124,6 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                                <div class="fileinput-new thumbnail">
-                                                    <img src="../../assets/img/image_placeholder.jpg" alt="...">
-                                                </div>
-                                                <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                                                <div>
-                                                    <span class="btn btn-rose btn-round btn-file">
-                                                        <span class="fileinput-new">Seleccionar Imagen</span>
-                                                        <span class="fileinput-exists">Cambiar</span>
-                                                        <!-- <input type="file" name="..." /> -->
-                                                        <input type="file" id="btnUpload" value="Upload" (change)="fileChange($event)" class="upload"/>
-                                                    </span>
-                                                    <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
-                                                        <i class="fa fa-times"></i> Remove</a>
-                                                </div>
-                                            </div>
                                             <!-- <div class="col-sm-6">
                                                 <div class="fileUpload btn btn-primary">
                                                     <span>Upload</span>

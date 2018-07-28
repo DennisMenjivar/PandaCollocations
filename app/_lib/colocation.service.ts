@@ -121,7 +121,7 @@ export class ColocationService {
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
     return this._http.post(this.current_api + 'api/colocatechapi/setContact/', body, requestOptions).map((data: Response) => {
-      return 1;
+      return data.json() as number;
     });
   }
 
