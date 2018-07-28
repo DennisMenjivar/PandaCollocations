@@ -30,7 +30,6 @@ export class ExperienceEditDialogComponent implements OnInit {
 
   setLaboralExperience() {
     this.myExperience.id_contact = this.myContact.ID;
-    this.myExperience.id_company = this.myContact.id_company;
     this._auxiliar.setLaboralExperience(this.myExperience).subscribe(data => {
       if (data) {
 
