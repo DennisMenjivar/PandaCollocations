@@ -44,6 +44,8 @@ export class CreateContactComponent implements OnInit {
   academyLevel = [{ value: 0, viewValue: 'Primaria' }, { value: 1, viewValue: 'Secundaria' }, { value: 2, viewValue: 'Universitaria' }, { value: 3, viewValue: 'Doctorado' }];
   schedulesAvailable = [{ value: 0, viewValue: 'SI' }, { value: 1, viewValue: 'NO' }];
   states = [{ value: 0, viewValue: 'Cortes' }, { value: 1, viewValue: 'Atlántida' }, { value: 2, viewValue: 'Choluteca' }];
+  vehicles = [{ value: 0, viewValue: 'NO' }, { value: 1, viewValue: 'Automovil' }, { value: 2, viewValue: 'Motocicleta' }];
+  licence_kind = [{ value: 0, viewValue: 'Liviana' }, { value: 1, viewValue: 'Pesada' }, { value: 2, viewValue: 'Motocicleta' }];
 
   categories: Category[];
   categorySelected: Category = new Category();
@@ -61,6 +63,11 @@ export class CreateContactComponent implements OnInit {
     }
     this.getCategories();
     // Cargo el detalle despues de haberse cargado las subcategorias
+    this.getContactInformation();
+    this.getStudies();
+  }
+
+  getContactInformation() {
     if (this.myContact.ID != 0) {
       this.imageName = 'http://grandappapi.grandapp.xyz/Photos/' + this.myContact.ID + '.jpg';
       this._auxiliar.getContactInformation(this.myContact).subscribe(data => {
@@ -78,10 +85,21 @@ export class CreateContactComponent implements OnInit {
         this._auxiliar.myContact.city = data.city;
         this._auxiliar.myContact.state = data.state;
         this._auxiliar.myContact.address = data.address;
-        this.getLaboralExperiences();
+        this.getContactAdditionalInformation();
       });
     }
-    this.getStudies();
+  }
+
+  getContactAdditionalInformation() {
+    this._auxiliar.getContactAdditionalInformation(this.myContact).subscribe(result => {
+      this.myContact.licence = result.licence;
+      this.myContact.car = result.car;
+      this.myContact.licence_kind = result.licence_kind;
+      this.myContact.officeLevel = result.officeLevel;
+      this.myContact.dependents = result.dependents;
+      
+      this.getLaboralExperiences();
+    })
   }
 
   getCategories() {
@@ -104,6 +122,8 @@ export class CreateContactComponent implements OnInit {
     this.myContact.registerUser = JSON.parse(sessionStorage.getItem('currentUser')).username;
     this._auxiliar.setContact(this.myContact).subscribe(data => {
       this.myContact.ID = data;
+      console.log("Contacts: ", this.myContact);
+
       this.setImage(data.toString() + ".jpg");
       this.title = this.myContact.firstName + " " + this.myContact.lastName;
     }, error => {

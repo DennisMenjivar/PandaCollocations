@@ -13,6 +13,7 @@ import { NumberModel } from '../_models/Number.model';
 import { Experience } from '../_models/Experience.model';
 import { Language } from '../_models/Language.model';
 import { Study } from '../_models/Study.model';
+import { ContactAdditionalInformation } from '../_models/ContactAdditionalInformation.model';
 
 @Injectable()
 
@@ -133,6 +134,17 @@ export class ColocationService {
 
     return this._http.post(this.current_api + 'api/colocatechapi/getContactInformation/', body, requestOptions).map((data: Response) => {
       return data.json() as ContactInformation;
+    });
+  }
+
+  getContactAdditionalInformation(contact: Contact) {
+    var body = JSON.stringify(contact);
+
+    var headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/colocatechapi/getContactAdditionalInformation/', body, requestOptions).map((data: Response) => {
+      return data.json() as ContactAdditionalInformation;
     });
   }
 
