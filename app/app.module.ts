@@ -54,6 +54,7 @@ import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { ColocationService } from './_lib/colocation.service';
 import { AppRoutes } from './app.routing';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   exports: [
@@ -113,7 +114,11 @@ export class MaterialModule { }
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
+    ConfirmDialogComponent
     // LoginPrincipalComponent,
+  ],
+  entryComponents: [
+    ConfirmDialogComponent
   ],
   providers: [ColocationService, ɵROUTER_PROVIDERS, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]

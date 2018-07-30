@@ -148,6 +148,16 @@ export class ColocationService {
     });
   }
 
+  setContactStatus(contact: Contact) {
+    var body = JSON.stringify(contact);
+    var headerOptions = new Headers({ 'Content-type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/colocatechapi/setContactStatus/', body, requestOptions).map((data: Response) => {
+      return 1;
+    });
+  }
+
   // Category
   getCategories() {
     let category: Category = new Category();

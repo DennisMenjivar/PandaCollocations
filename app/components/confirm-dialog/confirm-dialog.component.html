@@ -1,0 +1,16 @@
+<div>
+  <div mat-dialog-content>
+    <h2 style="text-align: center; margin-top: 0%; border: 0%; padding-top: 0%">
+      <strong>{{data.titulo}}</strong>
+    </h2>
+    <p style="text-align: center;">{{data.texto}}</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button class="crx-button-primary" [mat-dialog-close]="true" (click)="onYesClick()" cdkFocusInitial>
+      <i class="crx-confirm-dialog-button">Aceptar</i>
+    </button>
+    <button mat-button class="crx-button-second" (click)="onNoClick()">
+      <i class="crx-confirm-dialog-button">Cancelar</i>
+    </button>
+  </div>
+</div>

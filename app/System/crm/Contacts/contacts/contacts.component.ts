@@ -6,6 +6,7 @@ import { Contact } from '../../../../_models/Contact.model';
 import { Router } from '@angular/router';
 
 import swal from 'sweetalert2';
+import { ConfirmDialogComponent } from '../../../../components/confirm-dialog/confirm-dialog.component';
 declare var $: any;
 
 @Component({
@@ -46,40 +47,44 @@ export class ContactsComponent implements OnInit {
     })
   }
 
-  activeUser(contact: Contact) {
-    swal({
-      title: 'Activar Contacto',
-      text: 'Desea activar a ' + contact.firstName + ' ' + contact.lastName + '?',
-      type: 'question',
-      showCancelButton: true,
-      confirmButtonClass: 'btn btn-success',
-      cancelButtonClass: 'btn btn-danger',
-      confirmButtonText: 'Aceptar',
-      cancelButtonText: 'Cancelar',
-      buttonsStyling: false
-    }).then(function (result) {
-      if (result.value) {
-        console.log("Se Activo");
-      }
-    }).catch(swal.noop);
+  setContactStatus(contact: Contact) {
+    this._auxiliar.setContactStatus(contact).subscribe(result => {
+      this.getContacts();
+    });
   }
 
-  pay(contact: Contact) {
-    swal({
-      title: 'Pagar Membresía',
-      text: 'Desea pagar la membresía de ' + contact.firstName + ' ' + contact.lastName + '?',
-      type: 'question',
-      showCancelButton: true,
-      confirmButtonClass: 'btn btn-success',
-      cancelButtonClass: 'btn btn-danger',
-      confirmButtonText: 'Aceptar',
-      cancelButtonText: 'Cancelar',
-      buttonsStyling: false
-    }).then(function (result) {
-      if (result.value) {
-        console.log("Se Activo");
+  preActiveUser(contact: Contact) {
+    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      height: '210px',
+      data: { titulo: "Activar Usuario", texto: "Esta seguro que desea Activar a " + contact.firstName + ' ' + contact.lastName + '?', respuesta: false }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      const retorno: boolean = result;
+
+      if (retorno) {
+        contact.status = 1;
+        this.setContactStatus(contact);
       }
-    }).catch(swal.noop);
+    });
+  }
+
+  prePayUser(contact: Contact) {
+    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      height: '210px',
+      data: { titulo: "Pagar Membresia", texto: "Esta seguro que desea Pagar a " + contact.firstName + ' ' + contact.lastName + '?', respuesta: false }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      const retorno: boolean = result;
+
+      if (retorno) {
+        contact.paid = 1;
+        this.setContactStatus(contact);
+      }
+    });
   }
 
   newContact() { }

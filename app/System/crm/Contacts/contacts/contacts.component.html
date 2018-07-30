@@ -55,11 +55,11 @@
                                 <mat-header-cell *matHeaderCellDef>Editar</mat-header-cell>
                                 <mat-cell *matCellDef="let pro">
                                     <!-- Paid button -->
-                                    <button mat-icon-button style="color: rgb(25, 158, 25)" (click)="pay(pro)" *ngIf="pro.paid == 0 && membership == 1">
+                                    <button mat-icon-button style="color: rgb(25, 158, 25)" (click)="prePayUser(pro)" *ngIf="pro.paid == 0 && membership == 1">
                                         <mat-icon aria-label="Example icon-button with a heart icon">attach_money</mat-icon>
                                     </button>
                                     <!-- Status button -->
-                                    <button mat-icon-button style="color: #F1555E" (click)="activeUser(pro)" *ngIf="pro.status == 0">
+                                    <button mat-icon-button style="color: #F1555E" (click)="preActiveUser(pro)" *ngIf="pro.status == 0">
                                         <mat-icon aria-label="Example icon-button with a heart icon">done</mat-icon>
                                     </button>
                                     <!-- Editar button -->
