@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                         id_company: result.id_company,
                         company_name: result.company_name,
                         photoString_company: result.photoString_company,
+                        photoString: result.photoString,
                         telephoneNumber: result.telephoneNumber,
                         name_user: result.name_user,
                         conectado: result.conectado,
