@@ -19,6 +19,9 @@ export const AppRoutes: Routes = [
             },{
                 path: 'crm',
                 loadChildren: './System/crm/crm.module#CrmModule'
+            },{
+                path: 'adm',
+                loadChildren: './System/adm/adm.module#AdmModule'
             }, {
                 path: 'components',
                 loadChildren: './components/components.module#ComponentsModule'

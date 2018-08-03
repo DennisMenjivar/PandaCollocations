@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../app.module';
 import { AdmRoutes } from './adm.routing';
+import { ManagementResumesComponent } from '../../System/adm/management/management-resumes/management-resumes.component';
 
 @NgModule({
     imports: [
@@ -16,8 +17,7 @@ import { AdmRoutes } from './adm.routing';
 
     ],
     declarations: [
-
-    ],
+    ManagementResumesComponent],
     entryComponents: [
 
     ],
@@ -26,7 +26,7 @@ import { AdmRoutes } from './adm.routing';
     ]
 })
 
-export class AdmmModule {
+export class AdmModule {
     constructor() {
 
     }
