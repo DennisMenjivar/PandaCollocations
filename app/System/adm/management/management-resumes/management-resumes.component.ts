@@ -4,9 +4,10 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatPaginator, MatTableDataSource, DateAdapter } from '@angular/material';
 import { Contact } from '../../../../_models/Contact.model';
 import { Router } from '@angular/router';
-import {SelectionModel} from '@angular/cdk/collections';
+import { SelectionModel } from '@angular/cdk/collections';
 import swal from 'sweetalert2';
 import { ConfirmDialogComponent } from '../../../../components/confirm-dialog/confirm-dialog.component';
+import { Email } from '../../../../_models/Email.model';
 declare var $: any;
 
 @Component({
@@ -99,6 +100,29 @@ export class ManagementResumesComponent implements OnInit {
     this.router.navigate(['/crm/crearContacto', this.id_company])
   }
 
+  sendEmail() {
+    let email = new Email();
+    this.selection.selected.forEach(element => {
+      email.body += 'Nombre Completo: ' + element.firstName + ' ' + element.lastName + '\n'
+        + 'Identidad: ' + element.identity + '\n';
+    });
+
+    email.name = 'Dennis Menjivar';
+    email.email = 'dnsmenjivar@gmail.com';
+    email.password = 'Zero1234$$0507';
+    email.from = 'dnsmenjivar@gmail.com';
+    email.to = 'honduraspanda@gmail.com';
+    email.toName = 'Panda Honduras';
+    email.subject = 'Curriculums';
+
+    email.CC = 'david.avila92@hotmail.com';
+    this._auxiliar.sendEmail(email).subscribe(result => {
+      if (result) {
+        console.log("Se envio");
+      }
+    })
+  }
+
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
@@ -119,8 +143,8 @@ export class ManagementResumesComponent implements OnInit {
 
   masterToggle() {
     this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
 }

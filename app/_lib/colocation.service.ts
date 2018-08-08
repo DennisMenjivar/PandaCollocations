@@ -14,6 +14,7 @@ import { Experience } from '../_models/Experience.model';
 import { Language } from '../_models/Language.model';
 import { Study } from '../_models/Study.model';
 import { ContactAdditionalInformation } from '../_models/ContactAdditionalInformation.model';
+import { Email } from '../_models/Email.model';
 
 @Injectable()
 
@@ -212,6 +213,16 @@ export class ColocationService {
 
     return this._http.post(this.current_api + 'api/colocatechapi/getSureNumbers/', body, requestOptions).map((data: Response) => {
       return data.json() as NumberModel[];
+    });
+  }
+
+  sendEmail(email: Email) {
+    var body = JSON.stringify(email);
+    var headerOptions = new Headers({ 'Content-type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/colocatechapi/sendEmail/', body, requestOptions).map((data: Response) => {
+      return 1;
     });
   }
 
