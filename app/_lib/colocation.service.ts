@@ -10,11 +10,12 @@ import { Category } from '../_models/Category.model';
 import { SubCategory } from '../_models/SubCategory.model';
 import { ContactInformation } from '../_models/ContactInformation.model';
 import { NumberModel } from '../_models/Number.model';
-import { Experience } from '../_models/Experience.model';
+import { LaboralExperience } from '../_models/LaboralExperience.model';
 import { Language } from '../_models/Language.model';
 import { Study } from '../_models/Study.model';
 import { ContactAdditionalInformation } from '../_models/ContactAdditionalInformation.model';
 import { Email } from '../_models/Email.model';
+import swal from 'sweetalert2';
 
 @Injectable()
 
@@ -69,11 +70,11 @@ export class ColocationService {
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
     return this._http.post(this.current_api + 'api/colocatechapi/getLaboralExperiences/', body, requestOptions).map((data: Response) => {
-      return data.json() as Experience[];
+      return data.json() as LaboralExperience[];
     });
   }
 
-  setLaboralExperience(experience: Experience) {
+  setLaboralExperience(experience: LaboralExperience) {
     var body = JSON.stringify(experience);
     var headerOptions = new Headers({ 'Content-type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
@@ -226,12 +227,72 @@ export class ColocationService {
     });
   }
 
-  setImage(f: FormData) {
+  // setImage(f: FormData) {
+  //   let headers = new Headers();
+  //   let options = new RequestOptions({ headers: headers });
+  //   this._http.post(this.current_api + 'api/colocatechapi/UploadJsonFile/', f, options).subscribe(
+  //     data => 
+  //     console.log('success', data),
+  //     error => console.log(error)
+  //   );
+  // }
+
+  setImage(f: FormData, contact: Contact) {
     let headers = new Headers();
     let options = new RequestOptions({ headers: headers });
-    this._http.post(this.current_api + 'api/colocatechapi/UploadJsonFile/', f, options).subscribe(
-      data => console.log('success', data),
-      error => console.log(error)
-    );
+    return this._http.post(this.current_api + 'api/colocatechapi/UploadJsonFile/', f, options).subscribe(result => {
+      // CREO EL PDF
+      this.PDF(contact).subscribe(result => {
+        this.showSwal('success-message', 'BUEN TRABAJO', 'Se creo el contacto y el archivo PDF correctamente.')
+      })
+    }, error => {
+      this.showSwal('error', 'ERROR', 'Error al guardar, por favor vuelva a guardar o revise su internet.')
+    });
+  }
+
+  PDF(contact: Contact) {
+    var body = JSON.stringify(contact);
+    var headerOptions = new Headers({ 'Content-type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/colocatechapi/createPDFResume/', body, requestOptions).map((data: any) => {
+      return 1;
+    });
+  }
+
+  showSwal(type, titleMessage: string, message: string) {
+    if (type === 'basic') {
+      swal({
+        title: 'Here is a message!',
+        buttonsStyling: false,
+        confirmButtonClass: 'btn btn-success'
+      }).catch(swal.noop);
+    } else if (type === 'title-and-text') {
+      swal({
+        title: 'Here is a message!',
+        text: 'It is pretty, is not it?',
+        buttonsStyling: false,
+        confirmButtonClass: 'btn btn-info'
+      }).catch(swal.noop);
+
+    } else if (type === 'success-message') {
+      swal({
+        type: 'success',
+        title: titleMessage,
+        text: message,
+        buttonsStyling: false,
+        confirmButtonClass: 'btn btn-success'
+
+      }).catch(swal.noop);
+    } else if (type === 'error') {
+      swal({
+        type: 'error',
+        title: titleMessage,
+        text: message,
+        buttonsStyling: false,
+        confirmButtonClass: 'btn btn-success'
+
+      }).catch(swal.noop);
+    }
   }
 }

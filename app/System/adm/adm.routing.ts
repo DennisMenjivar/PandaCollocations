@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { ManagementResumesComponent } from './management/management-resumes/management-resumes.component';
+import { PdfViewerComponent } from './pdf/pdf-viewer/pdf-viewer.component';
 
 export const AdmRoutes: Routes = [
     {
@@ -14,6 +15,12 @@ export const AdmRoutes: Routes = [
         children: [{
             path: 'managementResumes/:id',
             component: ManagementResumesComponent
+        }]
+    }, {
+        path: '',
+        children: [{
+            path: 'pdfViewer/:id',
+            component: PdfViewerComponent
         }]
     }
 ];

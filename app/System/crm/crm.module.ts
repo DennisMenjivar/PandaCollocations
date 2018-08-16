@@ -5,11 +5,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../app.module';
 import { ContactsComponent } from './Contacts/contacts/contacts.component';
 import { CrmRoutes } from './crm.routing';
-import { CreateContactComponent } from '../../System/crm/Contacts/create-contact/create-contact.component';
-import { PandaListsComponent } from '../../System/crm/panda-lists/panda-lists.component';
-import { ExperienceEditDialogComponent } from '../../System/crm/Contacts/experience-edit-dialog/experience-edit-dialog.component';
-import { LanguageEditDialogComponent } from '../../System/crm/Contacts/language-edit-dialog/language-edit-dialog.component';
-import { StudyEditDialogComponent } from '../../System/crm/Contacts/study-edit-dialog/study-edit-dialog.component';
+import { CreateContactComponent } from './Contacts/create-contact/create-contact.component';
+import { PandaListsComponent } from './panda-lists/panda-lists.component';
+import { ExperienceEditDialogComponent } from './Contacts/experience-edit-dialog/experience-edit-dialog.component';
+import { LanguageEditDialogComponent } from './Contacts/language-edit-dialog/language-edit-dialog.component';
+import { StudyEditDialogComponent } from './Contacts/study-edit-dialog/study-edit-dialog.component';
 
 @NgModule({
     imports: [

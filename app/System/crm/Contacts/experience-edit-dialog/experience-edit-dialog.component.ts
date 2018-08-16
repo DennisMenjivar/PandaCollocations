@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ColocationService } from '../../../../_lib/colocation.service';
-import { Experience } from '../../../../_models/Experience.model';
+import { LaboralExperience } from '../../../../_models/LaboralExperience.model';
 import { Contact } from '../../../../_models/Contact.model';
 
 @Component({
@@ -11,7 +11,7 @@ import { Contact } from '../../../../_models/Contact.model';
 })
 export class ExperienceEditDialogComponent implements OnInit {
 
-  myExperience: Experience = new Experience();
+  myExperience: LaboralExperience = new LaboralExperience();
   myContact: Contact;
 
   constructor(public _auxiliar: ColocationService, public dialog: MatDialog, public dialogRef: MatDialogRef<ExperienceEditDialogComponent>

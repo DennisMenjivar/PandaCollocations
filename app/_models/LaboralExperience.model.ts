@@ -1,4 +1,4 @@
-export class Experience {
+export class LaboralExperience {
     ID: number;
     id_contact: number;
     company: string;

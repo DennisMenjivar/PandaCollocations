@@ -1,3 +1,5 @@
+import { LaboralExperience } from "./LaboralExperience.model";
+
 export class Contact {
     ID: number;
     id_company: number;
@@ -36,6 +38,10 @@ export class Contact {
     officeLevel: number;
     dependents: string;
 
+    laboralExperiences: LaboralExperience[];
+    company_name: string;
+    photoString_company: string;
+
     constructor(id_company: number) {
         this.ID = 0;
         this.id_company = id_company;
@@ -73,5 +79,10 @@ export class Contact {
         this.licence_kind = 0;
         this.officeLevel = 0;
         this.dependents = '';
+
+        this.laboralExperiences = [];
+
+        this.company_name = '';
+        this.photoString_company = '';
     }
 }

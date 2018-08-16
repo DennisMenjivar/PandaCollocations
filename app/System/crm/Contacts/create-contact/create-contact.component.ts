@@ -6,10 +6,10 @@ import { ContactInformation } from '../../../../_models/ContactInformation.model
 import { ContactAdditionalInformation } from '../../../../_models/ContactAdditionalInformation.model';
 import { Category } from '../../../../_models/Category.model';
 import { SubCategory } from '../../../../_models/SubCategory.model';
-import { MatDialog } from '../../../../../../node_modules/@angular/material';
+import { MatDialog } from '@angular/material';
 import { ExperienceEditDialogComponent } from '../experience-edit-dialog/experience-edit-dialog.component';
 import { MatPaginator, MatTableDataSource, DateAdapter } from '@angular/material';
-import { Experience } from '../../../../_models/Experience.model';
+import { LaboralExperience } from '../../../../_models/LaboralExperience.model';
 import { Language } from '../../../../_models/Language.model';
 import { LanguageEditDialogComponent } from '../language-edit-dialog/language-edit-dialog.component';
 import { Study } from '../../../../_models/Study.model';
@@ -24,7 +24,7 @@ export class CreateContactComponent implements OnInit {
 
   title: string = 'Crear Contacto';
 
-  dataSource = new MatTableDataSource<Experience>();
+  dataSource = new MatTableDataSource<LaboralExperience>();
   displayedColumns = ['ID', 'Company', 'functions', 'salary', 'fromString', 'until', 'editar'];
 
   dataSourceLanguages = new MatTableDataSource<Language>();
@@ -61,10 +61,7 @@ export class CreateContactComponent implements OnInit {
       this.myContact = _auxiliar.myContact;
       this.title = this.myContact.firstName + ' ' + this.myContact.lastName;
     }
-    this.getCategories();
-    // Cargo el detalle despues de haberse cargado las subcategorias
     this.getContactInformation();
-    this.getStudies();
   }
 
   getContactInformation() {
@@ -97,7 +94,7 @@ export class CreateContactComponent implements OnInit {
       this.myContact.licence_kind = result.licence_kind;
       this.myContact.officeLevel = result.officeLevel;
       this.myContact.dependents = result.dependents;
-      
+
       this.getLaboralExperiences();
     })
   }
@@ -115,23 +112,28 @@ export class CreateContactComponent implements OnInit {
     this.subCategories = [];
     this._auxiliar.getSubCategories(this.categorySelected).subscribe(result => {
       this.subCategories = result;
+      // FINAL GET
+      this.getStudies();
     })
   }
 
   createContact() {
     this.myContact.registerUser = JSON.parse(sessionStorage.getItem('currentUser')).username;
+    this.myContact.company_name = JSON.parse(sessionStorage.getItem('currentUser')).company_name;
+    this.myContact.photoString_company = 'C:\\inetpub\\Photos\\' + this.myContact.company_name + '.jpg';
+
     this._auxiliar.setContact(this.myContact).subscribe(data => {
       this.myContact.ID = data;
-      console.log("Contacts: ", this.myContact);
-
-      this.setImage(data.toString() + ".jpg");
       this.title = this.myContact.firstName + " " + this.myContact.lastName;
+      // INSERTO LA IMAGEN
+      this.setImage(data.toString() + ".jpg", this.myContact);
     }, error => {
       console.log("Error al guardar: ", error);
     });
   }
 
   goBack() {
+    this.imageName = null;
     this.router.navigate(['/crm/contactos', this.id_company]);
     this._auxiliar.myContact = null;
   }
@@ -157,7 +159,7 @@ export class CreateContactComponent implements OnInit {
     });
   }
 
-  editLaboralExperience(experience: Experience) {
+  editLaboralExperience(experience: LaboralExperience) {
     let dialogRef = this.dialog.open(ExperienceEditDialogComponent, {
       width: '500px',
       data: {
@@ -177,6 +179,7 @@ export class CreateContactComponent implements OnInit {
   getLaboralExperiences() {
     this._auxiliar.getLaboralExperiences(this.myContact).subscribe(result => {
       this.dataSource.data = result;
+      this.myContact.laboralExperiences = result;
       this.getLanguages();
     })
   }
@@ -184,6 +187,7 @@ export class CreateContactComponent implements OnInit {
   getLanguages() {
     this._auxiliar.getLanguages(this.myContact).subscribe(result => {
       this.dataSourceLanguages.data = result;
+      this.getCategories();
     })
   }
 
@@ -221,6 +225,7 @@ export class CreateContactComponent implements OnInit {
   }
 
   getStudies() {
+    // FINAL
     this.studies = [];
     this._auxiliar.getStudies(this.myContact).subscribe(data => {
       this.studies = data;
@@ -268,9 +273,9 @@ export class CreateContactComponent implements OnInit {
     }
   }
 
-  setImage(fileName: string) {
+  setImage(fileName: string, contact: Contact) {
     this.formData.append('uploadFile', this.file, fileName);
-    this._auxiliar.setImage(this.formData);
+    this._auxiliar.setImage(this.formData, contact)
   }
 
   isUploadBtn: boolean;

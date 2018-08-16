@@ -4,7 +4,7 @@
             <button mat-button class="crx-button-primary" (click)="goBack()">
                 <i class="material-icons crx-button-primary">keyboard_backspace</i>
             </button>
-            <button mat-button class="crx-button-primary" (click)="createContact()">
+            <button mat-button class="crx-button-primary" (click)="createContact()" *ngIf="studies!= null || _auxiliar.myContact == null">
                 <i class="material-icons crx-button-primary">save</i>
             </button>
             <div class="card">
@@ -330,6 +330,54 @@
                                     </div>
                                     <div class="card" style="padding-top: 0%; margin-top: 1%; margin-bottom: 1%; border: 0%">
                                         <div class="card-header card-header-success card-header-icon">
+                                            <h4 class="card-title">Estudios</h4>
+                                            <button mat-button class="crx-button-primary" (click)="editStudy()">
+                                                <i class="material-icons crx-button-primary">add</i>
+                                            </button>
+                                        </div>
+                                        <div style="padding: 1%">
+                                            <mat-table #tableS [dataSource]="dataSourceStudies">
+                                                <!-- Nombre Column -->
+                                                <ng-container matColumnDef="ID">
+                                                    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.ID}} </mat-cell>
+                                                </ng-container>
+
+                                                <!-- Telefono Column -->
+                                                <ng-container matColumnDef="study">
+                                                    <mat-header-cell *matHeaderCellDef> Estudio </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+                                                </ng-container>
+
+                                                <!-- Celular Column -->
+                                                <ng-container matColumnDef="institute">
+                                                    <mat-header-cell *matHeaderCellDef> Instituto </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.institute}} </mat-cell>
+                                                </ng-container>
+
+                                                <!-- Celular Column -->
+                                                <ng-container matColumnDef="kind">
+                                                    <mat-header-cell *matHeaderCellDef> Nivel </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.kind}} </mat-cell>
+                                                </ng-container>
+
+                                                <!-- Botones de Editar -->
+                                                <ng-container matColumnDef="editar">
+                                                    <mat-header-cell *matHeaderCellDef>Editar</mat-header-cell>
+                                                    <mat-cell *matCellDef="let pro">
+                                                        <button mat-icon-button color="primary" (click)="editStudy(pro)">
+                                                            <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
+                                                        </button>
+                                                    </mat-cell>
+                                                </ng-container>
+
+                                                <mat-header-row *matHeaderRowDef="displayedColumnsStudies"></mat-header-row>
+                                                <mat-row *matRowDef="let row; columns: displayedColumnsStudies;"></mat-row>
+                                            </mat-table>
+                                        </div>
+                                    </div>
+                                    <div class="card" style="padding-top: 0%; margin-top: 1%; margin-bottom: 1%; border: 0%">
+                                        <div class="card-header card-header-success card-header-icon">
                                             <h4 class="card-title">Experiencia laboral</h4>
                                             <button mat-button class="crx-button-primary" (click)="openDialog()">
                                                 <i class="material-icons crx-button-primary">add</i>
@@ -358,7 +406,7 @@
                                                 <!-- Email Column -->
                                                 <ng-container matColumnDef="salary">
                                                     <mat-header-cell *matHeaderCellDef> Salario </mat-header-cell>
-                                                    <mat-cell *matCellDef="let element"> {{element.salary | currency:'Lps.':true:'1.2-2'}} </mat-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.salary | currency:'Lps.':'1.2-2'}} </mat-cell>
                                                 </ng-container>
 
                                                 <!-- Email Column -->
@@ -431,54 +479,6 @@
 
                                                 <mat-header-row *matHeaderRowDef="displayedColumnsLanguages"></mat-header-row>
                                                 <mat-row *matRowDef="let row; columns: displayedColumnsLanguages;"></mat-row>
-                                            </mat-table>
-                                        </div>
-                                    </div>
-                                    <div class="card" style="padding-top: 0%; margin-top: 1%; margin-bottom: 1%; border: 0%">
-                                        <div class="card-header card-header-success card-header-icon">
-                                            <h4 class="card-title">Estudios</h4>
-                                            <button mat-button class="crx-button-primary" (click)="editStudy()">
-                                                <i class="material-icons crx-button-primary">add</i>
-                                            </button>
-                                        </div>
-                                        <div style="padding: 1%">
-                                            <mat-table #tableS [dataSource]="dataSourceStudies">
-                                                <!-- Nombre Column -->
-                                                <ng-container matColumnDef="ID">
-                                                    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-                                                    <mat-cell *matCellDef="let element"> {{element.ID}} </mat-cell>
-                                                </ng-container>
-
-                                                <!-- Telefono Column -->
-                                                <ng-container matColumnDef="study">
-                                                    <mat-header-cell *matHeaderCellDef> Estudio </mat-header-cell>
-                                                    <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
-                                                </ng-container>
-
-                                                <!-- Celular Column -->
-                                                <ng-container matColumnDef="institute">
-                                                    <mat-header-cell *matHeaderCellDef> Instituto </mat-header-cell>
-                                                    <mat-cell *matCellDef="let element"> {{element.institute}} </mat-cell>
-                                                </ng-container>
-
-                                                <!-- Celular Column -->
-                                                <ng-container matColumnDef="kind">
-                                                    <mat-header-cell *matHeaderCellDef> Nivel </mat-header-cell>
-                                                    <mat-cell *matCellDef="let element"> {{element.kind}} </mat-cell>
-                                                </ng-container>
-
-                                                <!-- Botones de Editar -->
-                                                <ng-container matColumnDef="editar">
-                                                    <mat-header-cell *matHeaderCellDef>Editar</mat-header-cell>
-                                                    <mat-cell *matCellDef="let pro">
-                                                        <button mat-icon-button color="primary" (click)="editStudy(pro)">
-                                                            <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
-                                                        </button>
-                                                    </mat-cell>
-                                                </ng-container>
-
-                                                <mat-header-row *matHeaderRowDef="displayedColumnsStudies"></mat-header-row>
-                                                <mat-row *matRowDef="let row; columns: displayedColumnsStudies;"></mat-row>
                                             </mat-table>
                                         </div>
                                     </div>

@@ -35,6 +35,7 @@ export const ROUTES: RouteInfo[] = [{
     collapse: 'adm',
     children: [
         { path: 'managementResumes', title: 'Administración', ab: 'A' },
+        { path: 'pdfViewer', title: 'PDF', ab: 'P' }
         // { path: 'pandaList', title: 'Panda', ab: 'P' }
     ]
 }, {
