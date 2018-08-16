@@ -16,11 +16,12 @@ export const CrmRoutes: Routes = [
             path: 'crearContacto/:id',
             component: CreateContactComponent
         }]
-    }, {
-        path: '',
-        children: [{
-            path: 'pandaList/:id',
-            component: PandaListsComponent
-        }]
     }
+    // , {
+    //     path: '',
+    //     children: [{
+    //         path: 'pandaList/:id',
+    //         component: PandaListsComponent
+    //     }]
+    // }
 ];

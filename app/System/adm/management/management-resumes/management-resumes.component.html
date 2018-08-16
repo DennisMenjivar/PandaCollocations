@@ -53,7 +53,21 @@
               <ng-container matColumnDef="status">
                 <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  {{element.status_name}}
+                  <div *ngIf="element.status == 0">
+                    <mat-chip-list>
+                      <mat-chip style="background-color:rgb(211, 252, 129); color: black">{{element.status_name}}</mat-chip>
+                    </mat-chip-list>
+                  </div>
+                  <div *ngIf="element.status == 1">
+                    <mat-chip-list>
+                      <mat-chip style="background-color:rgb(252, 102, 102); color: white">{{element.status_name}}</mat-chip>
+                    </mat-chip-list>
+                  </div>
+                  <div *ngIf="element.status == 2">
+                    <mat-chip-list>
+                      <mat-chip style="background-color:rgb(123, 84, 167); color: white">{{element.status_name}}</mat-chip>
+                    </mat-chip-list>
+                  </div>
                 </mat-cell>
               </ng-container>
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

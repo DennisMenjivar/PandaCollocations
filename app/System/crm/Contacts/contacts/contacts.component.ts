@@ -2,10 +2,9 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ColocationService } from '../../../../_lib/colocation.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatPaginator, MatTableDataSource, DateAdapter } from '@angular/material';
-import { Contact } from '../../../../_models/Contact.model';
 import { Router } from '@angular/router';
+import { Contact } from '../../../../_models/Contact.model';
 
-import swal from 'sweetalert2';
 import { ConfirmDialogComponent } from '../../../../components/confirm-dialog/confirm-dialog.component';
 declare var $: any;
 

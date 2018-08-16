@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Contact } from '../../../../_models/Contact.model';
 import { Router } from '@angular/router';
 import { ColocationService } from '../../../../_lib/colocation.service';
-import { ContactInformation } from '../../../../_models/ContactInformation.model';
-import { ContactAdditionalInformation } from '../../../../_models/ContactAdditionalInformation.model';
 import { Category } from '../../../../_models/Category.model';
 import { SubCategory } from '../../../../_models/SubCategory.model';
 import { MatDialog } from '@angular/material';
