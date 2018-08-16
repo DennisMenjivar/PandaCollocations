@@ -5,30 +5,26 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../app.module';
 import { AdmRoutes } from './adm.routing';
 import { ManagementResumesComponent } from './management/management-resumes/management-resumes.component';
-import { PdfViewerComponent } from './pdf/pdf-viewer/pdf-viewer.component';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule.forChild(AdmRoutes),
         FormsModule,
-        MaterialModule,
-        PdfViewerModule
+        MaterialModule
     ],
     providers: [
 
     ],
     declarations: [
-        ManagementResumesComponent,
-        PdfViewerComponent],
+        ManagementResumesComponent],
     entryComponents: [
 
     ],
     exports: [
 
     ],
-    bootstrap: [PdfViewerComponent]
+    bootstrap: []
 })
 
 export class AdmModule {
