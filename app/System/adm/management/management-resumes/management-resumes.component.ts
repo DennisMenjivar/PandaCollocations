@@ -8,6 +8,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import swal from 'sweetalert2';
 import { ConfirmDialogComponent } from '../../../../components/confirm-dialog/confirm-dialog.component';
 import { Email } from '../../../../_models/Email.model';
+import { Resume } from '../../../../_models/Resume.model';
 declare var $: any;
 
 @Component({
@@ -17,15 +18,13 @@ declare var $: any;
 })
 export class ManagementResumesComponent implements OnInit {
 
-  contactos: Contact[];
-
   membership: number = 0;
 
   id_company: number = 0;
 
-  dataSource = new MatTableDataSource<Contact>();
-  displayedColumns = ['select', 'name', 'identity', 'profesion', 'status'];
-  selection = new SelectionModel<Contact>(true, []);
+  dataSource = new MatTableDataSource<Resume>();
+  displayedColumns = ['select', 'ciudad', 'yearsOld', 'profesion', 'interestArea', 'status'];
+  selection = new SelectionModel<Resume>(true, []);
 
   constructor(public _auxiliar: ColocationService, public dialog: MatDialog, public router: Router) {
     _auxiliar.myContact = null;
@@ -35,76 +34,24 @@ export class ManagementResumesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getContacts();
+    this.getResumes();
   }
 
-  getContacts() {
+  getResumes() {
     var cu = JSON.parse(sessionStorage.getItem('currentUser'));
     this.membership = cu.membership;
     var id_company = cu.id_company;
-    let contact: Contact = new Contact(id_company);
-    this._auxiliar.getContacts(contact).subscribe(data => {
-      this.dataSource.data = data;
-    })
-  }
-
-  setContactStatus(contact: Contact) {
-    this._auxiliar.setContactStatus(contact).subscribe(result => {
-      this.getContacts();
+    this._auxiliar.getResumes(id_company).subscribe(result => {
+      this.dataSource.data = result;
     });
-  }
-
-  preActiveUser(contact: Contact) {
-    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '500px',
-      height: '210px',
-      data: { titulo: "Activar Usuario", texto: "Esta seguro que desea Activar a " + contact.firstName + ' ' + contact.lastName + '?', respuesta: false }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      const retorno: boolean = result;
-
-      if (retorno) {
-        contact.status = 1;
-        this.setContactStatus(contact);
-      }
-    });
-  }
-
-  prePayUser(contact: Contact) {
-    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '500px',
-      height: '210px',
-      data: { titulo: "Pagar Membresia", texto: "Esta seguro que desea Pagar a " + contact.firstName + ' ' + contact.lastName + '?', respuesta: false }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      const retorno: boolean = result;
-
-      if (retorno) {
-        contact.paid = 1;
-        this.setContactStatus(contact);
-      }
-    });
-  }
-
-  newContact() { }
-
-  editContact(contact: Contact) {
-    this._auxiliar.myContact = contact;
-    this._auxiliar.myContact.id_company = this.id_company;
-    this.router.navigate(['/crm/crearContacto', this.id_company]);
-  }
-
-  createContact() {
-    this.router.navigate(['/crm/crearContacto', this.id_company])
   }
 
   sendEmail() {
     let email = new Email();
     this.selection.selected.forEach(element => {
-      email.body += 'Nombre Completo: ' + element.firstName + ' ' + element.lastName + '\n'
-        + 'Identidad: ' + element.identity + '\n';
+      email.body += 'Nombre Completo: ' + element.name + '\n'
+        + 'Identidad: ' + element.identityString + '\n'
+        + 'Curriculum: ' + element.pdfLink + '\n\n';
     });
 
     email.name = 'Dennis Menjivar';

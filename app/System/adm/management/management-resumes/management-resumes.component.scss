@@ -1,10 +1,16 @@
 table {
     width: 100%;
 }
-.mat-column-name {
-    flex: 0 0 30%;
+.mat-column-ciudad {
+    flex: 0 0 25%;
     padding-left: 3%;
 }
-.mat-column-select {
-  flex: 0 0 100%;
+.mat-column-yearsOld {
+    flex: 0 0 7%;
+    padding-left: 3%;
 }
+.mat-column-profesion {
+    flex: 0 0 25%;
+    padding-left: 3%;
+}
+

@@ -1,4 +1,6 @@
 import { LaboralExperience } from "./LaboralExperience.model";
+import { Study } from "./Study.model";
+import { Language } from "./Language.model";
 
 export class Contact {
     ID: number;
@@ -39,6 +41,9 @@ export class Contact {
     dependents: string;
 
     laboralExperiences: LaboralExperience[];
+    studies: Study[];
+    languages: Language[];
+
     company_name: string;
     photoString_company: string;
 
@@ -81,6 +86,8 @@ export class Contact {
         this.dependents = '';
 
         this.laboralExperiences = [];
+        this.studies = [];
+        this.languages = [];
 
         this.company_name = '';
         this.photoString_company = '';

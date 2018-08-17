@@ -59,7 +59,7 @@ export class CreateContactComponent implements OnInit {
       this.myContact = _auxiliar.myContact;
       this.title = this.myContact.firstName + ' ' + this.myContact.lastName;
     }
-    this.getContactInformation();
+    this.getCategories();
   }
 
   getContactInformation() {
@@ -110,8 +110,7 @@ export class CreateContactComponent implements OnInit {
     this.subCategories = [];
     this._auxiliar.getSubCategories(this.categorySelected).subscribe(result => {
       this.subCategories = result;
-      // FINAL GET
-      this.getStudies();
+      this.getContactInformation();
     })
   }
 
@@ -185,7 +184,9 @@ export class CreateContactComponent implements OnInit {
   getLanguages() {
     this._auxiliar.getLanguages(this.myContact).subscribe(result => {
       this.dataSourceLanguages.data = result;
-      this.getCategories();
+      this.myContact.languages = result;
+      // FINAL
+      this.getStudies();
     })
   }
 
@@ -228,6 +229,7 @@ export class CreateContactComponent implements OnInit {
     this._auxiliar.getStudies(this.myContact).subscribe(data => {
       this.studies = data;
       this.dataSourceStudies.data = data;
+      this.myContact.studies = data;
     })
   }
 

@@ -16,6 +16,7 @@ import { Study } from '../_models/Study.model';
 import { ContactAdditionalInformation } from '../_models/ContactAdditionalInformation.model';
 import { Email } from '../_models/Email.model';
 import swal from 'sweetalert2';
+import { Resume } from '../_models/Resume.model';
 
 @Injectable()
 
@@ -37,6 +38,18 @@ export class ColocationService {
 
     return this._http.post(this.current_api + 'api/colocatechapi/login/', body, requestOptions).map((data: Response) => {
       return data.json() as Login;
+    });
+  }
+
+  // RESUMES
+  getResumes(id_company: number) {
+    var body = JSON.stringify(id_company);
+
+    var headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/colocatechapi/getResumes/', body, requestOptions).map((data: Response) => {
+      return data.json() as Resume[];
     });
   }
 
