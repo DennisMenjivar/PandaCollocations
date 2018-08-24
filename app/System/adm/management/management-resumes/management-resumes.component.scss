@@ -1,16 +1,34 @@
 table {
     width: 100%;
 }
-.mat-column-ciudad {
+.mat-column-name {
     flex: 0 0 25%;
     padding-left: 3%;
+}
+.mat-column-ciudad {
+    flex: 0 0 12%;
+    padding-left: 0%;
+    padding-right: 0%;
+}
+.mat-column-interestArea {
+    flex: 0 0 20%;
+    padding-left: 0%;
+    padding-right: 0%;
 }
 .mat-column-yearsOld {
     flex: 0 0 7%;
-    padding-left: 3%;
+    padding-left: 0%;
+    padding-right: 0%;
 }
 .mat-column-profesion {
-    flex: 0 0 25%;
-    padding-left: 3%;
+    flex: 0 0 22%;
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+.mat-column-status {
+    flex: 0 0 10%;
+    padding-left: 0%;
+    padding-right: 0%;
 }
 

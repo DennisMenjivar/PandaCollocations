@@ -22,7 +22,6 @@ export class ContactsComponent implements OnInit {
   id_company: number = 0;
 
   dataSource = new MatTableDataSource<Contact>();
-
   displayedColumns = ['ID', 'name', 'identity', 'profesion', 'status', 'editar'];
 
   constructor(public _auxiliar: ColocationService, public dialog: MatDialog, public router: Router) {

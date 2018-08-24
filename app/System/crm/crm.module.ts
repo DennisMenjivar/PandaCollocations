@@ -10,6 +10,8 @@ import { PandaListsComponent } from './panda-lists/panda-lists.component';
 import { ExperienceEditDialogComponent } from './Contacts/experience-edit-dialog/experience-edit-dialog.component';
 import { LanguageEditDialogComponent } from './Contacts/language-edit-dialog/language-edit-dialog.component';
 import { StudyEditDialogComponent } from './Contacts/study-edit-dialog/study-edit-dialog.component';
+import { SystemKnowledgesComponent } from '../../System/crm/Contacts/system-knowledges/system-knowledges.component';
+import { CreateSKDialogComponent } from '../crm/Contacts/system-knowledges/create-skdialog/create-skdialog.component';
 
 @NgModule({
     imports: [
@@ -28,11 +30,14 @@ import { StudyEditDialogComponent } from './Contacts/study-edit-dialog/study-edi
         ExperienceEditDialogComponent,
         LanguageEditDialogComponent,
         StudyEditDialogComponent,
+        SystemKnowledgesComponent,
+        CreateSKDialogComponent,
     ],
     entryComponents: [
         ExperienceEditDialogComponent,
         LanguageEditDialogComponent,
-        StudyEditDialogComponent
+        StudyEditDialogComponent,
+        CreateSKDialogComponent
     ],
     exports: [
 

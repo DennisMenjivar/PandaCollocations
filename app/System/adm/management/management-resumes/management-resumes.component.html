@@ -30,6 +30,11 @@
                   </mat-checkbox>
                 </td>
               </ng-container>
+              <!-- Telefono Column -->
+              <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Nombre Completo </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+              </ng-container>
 
               <!-- Telefono Column -->
               <ng-container matColumnDef="ciudad">

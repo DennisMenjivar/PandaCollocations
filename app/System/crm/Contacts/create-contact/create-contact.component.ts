@@ -23,13 +23,13 @@ export class CreateContactComponent implements OnInit {
   title: string = 'Crear Contacto';
 
   dataSource = new MatTableDataSource<LaboralExperience>();
-  displayedColumns = ['ID', 'Company', 'functions', 'salary', 'fromString', 'until', 'editar'];
+  displayedColumns = ['Company', 'functions', 'salary', 'fromString', 'until', 'editar'];
 
   dataSourceLanguages = new MatTableDataSource<Language>();
-  displayedColumnsLanguages = ['ID', 'Lenguaje', 'Nivel', 'editar'];
+  displayedColumnsLanguages = ['Lenguaje', 'Nivel', 'editar'];
 
   dataSourceStudies = new MatTableDataSource<Study>();
-  displayedColumnsStudies = ['ID', 'study', 'institute', 'kind', 'editar'];
+  displayedColumnsStudies = ['study', 'institute', 'kind', 'editar'];
 
   myContact: Contact;
 
@@ -44,6 +44,7 @@ export class CreateContactComponent implements OnInit {
   states = [{ value: 0, viewValue: 'Cortes' }, { value: 1, viewValue: 'Atlántida' }, { value: 2, viewValue: 'Choluteca' }];
   vehicles = [{ value: 0, viewValue: 'NO' }, { value: 1, viewValue: 'Automovil' }, { value: 2, viewValue: 'Motocicleta' }];
   licence_kind = [{ value: 0, viewValue: 'Liviana' }, { value: 1, viewValue: 'Pesada' }, { value: 2, viewValue: 'Motocicleta' }];
+  kinds = [{ value: 0, viewValue: 'Estudio' }, { value: 1, viewValue: 'Curso' }];
 
   categories: Category[];
   categorySelected: Category = new Category();
@@ -64,7 +65,7 @@ export class CreateContactComponent implements OnInit {
 
   getContactInformation() {
     if (this.myContact.ID != 0) {
-      this.imageName = 'http://grandappapi.grandapp.xyz/Photos/' + this.myContact.ID + '.jpg';
+      this.imageName = 'http://collocationsapi.colocacioneshonduras.com/photos/Contacts/' + this.myContact.ID + '.jpg';
       this._auxiliar.getContactInformation(this.myContact).subscribe(data => {
         this._auxiliar.myContact.email = data.email;
         this._auxiliar.myContact.address = data.address;
@@ -85,7 +86,7 @@ export class CreateContactComponent implements OnInit {
     }
   }
 
-  getContactAdditionalInformation() {
+  getContactAdditionalInformation(){
     this._auxiliar.getContactAdditionalInformation(this.myContact).subscribe(result => {
       this.myContact.licence = result.licence;
       this.myContact.car = result.car;
@@ -117,7 +118,7 @@ export class CreateContactComponent implements OnInit {
   createContact() {
     this.myContact.registerUser = JSON.parse(sessionStorage.getItem('currentUser')).username;
     this.myContact.company_name = JSON.parse(sessionStorage.getItem('currentUser')).company_name;
-    this.myContact.photoString_company = 'C:\\inetpub\\Photos\\' + this.myContact.company_name + '.jpg';
+    this.myContact.photoString_company = 'C:\\inetpub\\wwwroot\\CollocationsApi\\Photos\\Companies\\' + this.myContact.company_name + '.jpg';
 
     this._auxiliar.setContact(this.myContact).subscribe(data => {
       this.myContact.ID = data;
@@ -280,5 +281,5 @@ export class CreateContactComponent implements OnInit {
 
   isUploadBtn: boolean;
   name: string;
-  path: string = "http://grandappapi.grandapp.xyz/Photos/";
+  path: string = "http:/collocationsapi.colocacioneshonduras.com/Photos/contacts/";
 }

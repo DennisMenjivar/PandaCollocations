@@ -1,0 +1,53 @@
+<div class="card" style="padding-top: 0%; margin-top: 1%; margin-bottom: 1%; border: 0%">
+  <div class="card-header card-header-success card-header-icon">
+    <h4 class="card-title">Conocimientos en Sistemas</h4>
+    <button mat-button class="crx-button-primary" (click)="createSystemKnowledgeDialog()">
+      <i class="material-icons crx-button-primary">add</i>
+    </button>
+  </div>
+  <div style="padding: 1%">
+    <mat-table #tableL [dataSource]="dataSource">
+
+      <!-- Telefono Column -->
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+      </ng-container>
+
+      <!-- Celular Column -->
+      <ng-container matColumnDef="level">
+        <mat-header-cell *matHeaderCellDef> Nivel </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div *ngIf="element.level == 0">
+            <mat-chip-list>
+              <mat-chip style="background-color:rgb(252, 209, 129); color: black">Basico</mat-chip>
+            </mat-chip-list>
+          </div>
+          <div *ngIf="element.level == 1">
+            <mat-chip-list>
+              <mat-chip style="background-color:rgb(252, 102, 102); color: black">Intermedio</mat-chip>
+            </mat-chip-list>
+          </div>
+          <div *ngIf="element.level == 2">
+            <mat-chip-list>
+              <mat-chip style="background-color:rgb(129, 252, 160); color: black">Avanzado</mat-chip>
+            </mat-chip-list>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Botones de Editar -->
+      <ng-container matColumnDef="editar">
+        <mat-header-cell *matHeaderCellDef>Editar</mat-header-cell>
+        <mat-cell *matCellDef="let pro">
+          <button mat-icon-button color="primary" (click)="editSystemKnowledgeDialog(pro)">
+            <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</div>

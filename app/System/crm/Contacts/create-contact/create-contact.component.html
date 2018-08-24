@@ -337,11 +337,6 @@
                                         </div>
                                         <div style="padding: 1%">
                                             <mat-table #tableS [dataSource]="dataSourceStudies">
-                                                <!-- Nombre Column -->
-                                                <ng-container matColumnDef="ID">
-                                                    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-                                                    <mat-cell *matCellDef="let element"> {{element.ID}} </mat-cell>
-                                                </ng-container>
 
                                                 <!-- Telefono Column -->
                                                 <ng-container matColumnDef="study">
@@ -357,8 +352,19 @@
 
                                                 <!-- Celular Column -->
                                                 <ng-container matColumnDef="kind">
-                                                    <mat-header-cell *matHeaderCellDef> Nivel </mat-header-cell>
-                                                    <mat-cell *matCellDef="let element"> {{element.kind}} </mat-cell>
+                                                    <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element">
+                                                        <div *ngIf="element.kind == 0">
+                                                            <mat-chip-list>
+                                                                <mat-chip style="background-color:rgb(240, 252, 129); color: black">Estudio</mat-chip>
+                                                            </mat-chip-list>
+                                                        </div>
+                                                        <div *ngIf="element.kind == 1">
+                                                            <mat-chip-list>
+                                                                <mat-chip style="background-color:rgb(102, 252, 147); color: black">Curso</mat-chip>
+                                                            </mat-chip-list>
+                                                        </div>
+                                                    </mat-cell>
                                                 </ng-container>
 
                                                 <!-- Botones de Editar -->
@@ -385,12 +391,6 @@
                                         </div>
                                         <div style="padding: 1%">
                                             <mat-table #table [dataSource]="dataSource">
-                                                <!-- Nombre Column -->
-                                                <ng-container matColumnDef="ID">
-                                                    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-                                                    <mat-cell *matCellDef="let element"> {{element.ID}} </mat-cell>
-                                                </ng-container>
-
                                                 <!-- Telefono Column -->
                                                 <ng-container matColumnDef="Company">
                                                     <mat-header-cell *matHeaderCellDef> Empresa </mat-header-cell>
@@ -399,14 +399,15 @@
 
                                                 <!-- Celular Column -->
                                                 <ng-container matColumnDef="functions">
-                                                    <mat-header-cell *matHeaderCellDef> Función </mat-header-cell>
+                                                    <mat-header-cell *matHeaderCellDef> Funciones </mat-header-cell>
                                                     <mat-cell *matCellDef="let element"> {{element.functions}} </mat-cell>
                                                 </ng-container>
 
                                                 <!-- Email Column -->
                                                 <ng-container matColumnDef="salary">
                                                     <mat-header-cell *matHeaderCellDef> Salario </mat-header-cell>
-                                                    <mat-cell *matCellDef="let element"> {{element.salary | currency:'Lps.':'1.2-2'}} </mat-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.salary | currency:'Lps.':'1.2-2'}}
+                                                    </mat-cell>
                                                 </ng-container>
 
                                                 <!-- Email Column -->
@@ -449,12 +450,6 @@
                                         </div>
                                         <div style="padding: 1%">
                                             <mat-table #tableL [dataSource]="dataSourceLanguages">
-                                                <!-- Nombre Column -->
-                                                <ng-container matColumnDef="ID">
-                                                    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-                                                    <mat-cell *matCellDef="let element"> {{element.ID}} </mat-cell>
-                                                </ng-container>
-
                                                 <!-- Telefono Column -->
                                                 <ng-container matColumnDef="Lenguaje">
                                                     <mat-header-cell *matHeaderCellDef> Lenguaje </mat-header-cell>
@@ -464,7 +459,28 @@
                                                 <!-- Celular Column -->
                                                 <ng-container matColumnDef="Nivel">
                                                     <mat-header-cell *matHeaderCellDef> Nivel </mat-header-cell>
-                                                    <mat-cell *matCellDef="let element"> {{element.level}} </mat-cell>
+                                                    <mat-cell *matCellDef="let element">
+                                                        <div *ngIf="element.level == 0">
+                                                            <mat-chip-list>
+                                                                <mat-chip style="background-color:rgb(252, 209, 129); color: black">Basico</mat-chip>
+                                                            </mat-chip-list>
+                                                        </div>
+                                                        <div *ngIf="element.level == 1">
+                                                            <mat-chip-list>
+                                                                <mat-chip style="background-color:rgb(252, 102, 102); color: black">Intermedio</mat-chip>
+                                                            </mat-chip-list>
+                                                        </div>
+                                                        <div *ngIf="element.level == 2">
+                                                            <mat-chip-list>
+                                                                <mat-chip style="background-color:rgb(129, 252, 160); color: black">Avanzado</mat-chip>
+                                                            </mat-chip-list>
+                                                        </div>
+                                                        <div *ngIf="element.level == 3">
+                                                            <mat-chip-list>
+                                                                <mat-chip style="background-color:rgb(102, 184, 252); color: black">Nativo</mat-chip>
+                                                            </mat-chip-list>
+                                                        </div>
+                                                    </mat-cell>
                                                 </ng-container>
 
                                                 <!-- Botones de Editar -->
@@ -482,6 +498,8 @@
                                             </mat-table>
                                         </div>
                                     </div>
+                                    <!--  -->
+                                    <app-system-knowledges [myContact]='myContact'></app-system-knowledges>
                                 </div>
                             </mat-tab>
                             <mat-tab label="Datos extras" *ngIf="myContact.ID != 0">

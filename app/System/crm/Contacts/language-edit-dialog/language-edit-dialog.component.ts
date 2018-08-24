@@ -36,6 +36,6 @@ export class LanguageEditDialogComponent implements OnInit {
 
       }
     })
-  } Î
+  }
 
 }

@@ -17,6 +17,7 @@ import { ContactAdditionalInformation } from '../_models/ContactAdditionalInform
 import { Email } from '../_models/Email.model';
 import swal from 'sweetalert2';
 import { Resume } from '../_models/Resume.model';
+import { SystemKnowledge } from '../_models/SystemKnowledge.model';
 
 @Injectable()
 
@@ -26,7 +27,7 @@ export class ColocationService {
 
   myContact: Contact = null;
 
-  current_api: string = "http://grandappapi.grandapp.xyz/";//"http://creaxisapi.creaxis.xyz/";
+  current_api: string = "http://collocationsapi.colocacioneshonduras.com/";//"http://creaxisapi.creaxis.xyz/";
 
   constructor(private _http: Http) { }
 
@@ -36,8 +37,32 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-Type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/login/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/login/', body, requestOptions).map((data: Response) => {
       return data.json() as Login;
+    }, error => {
+      console.log("Error al login: ", error);
+
+    });
+  }
+  // Systems Knowledges
+  getSystemsKnowledges(param: Contact) {
+    var body = JSON.stringify(param);
+
+    var headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/CollocationsApi/getSystemsKnowledges/', body, requestOptions).map((data: Response) => {
+      return data.json() as SystemKnowledge[];
+    });
+  }
+
+  setSystemsKnowledge(param: SystemKnowledge) {
+    var body = JSON.stringify(param);
+    var headerOptions = new Headers({ 'Content-type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/CollocationsApi/setSystemsKnowledge/', body, requestOptions).map((data: Response) => {
+      return 1;
     });
   }
 
@@ -48,7 +73,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-Type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/getResumes/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/getResumes/', body, requestOptions).map((data: Response) => {
       return data.json() as Resume[];
     });
   }
@@ -60,7 +85,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-Type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/getLanguages/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/getLanguages/', body, requestOptions).map((data: Response) => {
       return data.json() as Language[];
     });
   }
@@ -70,7 +95,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/setLanguage/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/setLanguage/', body, requestOptions).map((data: Response) => {
       return 1;
     });
   }
@@ -82,7 +107,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-Type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/getLaboralExperiences/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/getLaboralExperiences/', body, requestOptions).map((data: Response) => {
       return data.json() as LaboralExperience[];
     });
   }
@@ -92,7 +117,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/setLaboralExperience/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/setLaboralExperience/', body, requestOptions).map((data: Response) => {
       return 1;
     });
   }
@@ -104,7 +129,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-Type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/getStudies/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/getStudies/', body, requestOptions).map((data: Response) => {
       return data.json() as Study[];
     });
   }
@@ -114,7 +139,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/setStudy/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/setStudy/', body, requestOptions).map((data: Response) => {
       return 1;
     });
   }
@@ -126,7 +151,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-Type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/getContacts/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/getContacts/', body, requestOptions).map((data: Response) => {
       return data.json() as Contact[];
     });
   }
@@ -136,7 +161,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/setContact/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/setContact/', body, requestOptions).map((data: Response) => {
       return data.json() as number;
     });
   }
@@ -147,7 +172,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-Type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/getContactInformation/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/getContactInformation/', body, requestOptions).map((data: Response) => {
       return data.json() as ContactInformation;
     });
   }
@@ -158,7 +183,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-Type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/getContactAdditionalInformation/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/getContactAdditionalInformation/', body, requestOptions).map((data: Response) => {
       return data.json() as ContactAdditionalInformation;
     });
   }
@@ -168,7 +193,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/setContactStatus/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/setContactStatus/', body, requestOptions).map((data: Response) => {
       return 1;
     });
   }
@@ -181,7 +206,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-Type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/getCategories/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/getCategories/', body, requestOptions).map((data: Response) => {
       return data.json() as Category[];
     });
   }
@@ -192,7 +217,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-Type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/getSubcategories/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/getSubcategories/', body, requestOptions).map((data: Response) => {
       return data.json() as SubCategory[];
     });
   }
@@ -203,7 +228,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-Type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/getMinRangeNumber/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/getMinRangeNumber/', body, requestOptions).map((data: Response) => {
       return data.json() as NumberModel;
     });
   }
@@ -214,7 +239,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-Type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/getMumujas/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/getMumujas/', body, requestOptions).map((data: Response) => {
       return data.json() as NumberModel[];
     });
   }
@@ -225,7 +250,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-Type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/getSureNumbers/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/getSureNumbers/', body, requestOptions).map((data: Response) => {
       return data.json() as NumberModel[];
     });
   }
@@ -235,7 +260,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/sendEmail/', body, requestOptions).map((data: Response) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/sendEmail/', body, requestOptions).map((data: Response) => {
       return 1;
     });
   }
@@ -243,7 +268,7 @@ export class ColocationService {
   // setImage(f: FormData) {
   //   let headers = new Headers();
   //   let options = new RequestOptions({ headers: headers });
-  //   this._http.post(this.current_api + 'api/colocatechapi/UploadJsonFile/', f, options).subscribe(
+  //   this._http.post(this.current_api + 'api/CollocationsApi/UploadJsonFile/', f, options).subscribe(
   //     data => 
   //     console.log('success', data),
   //     error => console.log(error)
@@ -253,7 +278,7 @@ export class ColocationService {
   setImage(f: FormData, contact: Contact) {
     let headers = new Headers();
     let options = new RequestOptions({ headers: headers });
-    return this._http.post(this.current_api + 'api/colocatechapi/UploadJsonFile/', f, options).subscribe(result => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/UploadJsonFile/', f, options).subscribe(result => {
       // CREO EL PDF
       this.PDF(contact).subscribe(result => {
         this.showSwal('success-message', 'BUEN TRABAJO', 'Se creo el contacto y el archivo PDF correctamente.')
@@ -268,7 +293,7 @@ export class ColocationService {
     var headerOptions = new Headers({ 'Content-type': 'application/json' });
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
-    return this._http.post(this.current_api + 'api/colocatechapi/createPDFResume/', body, requestOptions).map((data: any) => {
+    return this._http.post(this.current_api + 'api/CollocationsApi/createPDFResume/', body, requestOptions).map((data: any) => {
       return 1;
     });
   }

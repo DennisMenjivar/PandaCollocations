@@ -23,7 +23,7 @@ export class ManagementResumesComponent implements OnInit {
   id_company: number = 0;
 
   dataSource = new MatTableDataSource<Resume>();
-  displayedColumns = ['select', 'ciudad', 'yearsOld', 'profesion', 'interestArea', 'status'];
+  displayedColumns = ['select', 'name', 'ciudad', 'yearsOld', 'profesion', 'interestArea', 'status'];
   selection = new SelectionModel<Resume>(true, []);
 
   constructor(public _auxiliar: ColocationService, public dialog: MatDialog, public router: Router) {
