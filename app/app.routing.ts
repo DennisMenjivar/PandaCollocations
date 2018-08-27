@@ -22,6 +22,9 @@ export const AppRoutes: Routes = [
             },{
                 path: 'adm',
                 loadChildren: './System/adm/adm.module#AdmModule'
+            },{
+                path: 'ope',
+                loadChildren: './System/ope/ope.module#OpeModule'
             }, {
                 path: 'components',
                 loadChildren: './components/components.module#ComponentsModule'

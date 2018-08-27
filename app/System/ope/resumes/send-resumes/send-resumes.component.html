@@ -1,0 +1,97 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="col-md-12">
+      <button mat-button class="crx-button-primary" (click)="goBack()">
+        <i class="material-icons crx-button-primary">keyboard_backspace</i>
+      </button>
+      <button mat-button class="crx-button-primary" (click)="sendEmail()" *ngIf="myEmail.from!= null && myEmail.password != null">
+        <i class="material-icons crx-button-primary">send</i>
+      </button>
+      <div class="card">
+        <div class="card-header card-header-success card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">email</i>
+          </div>
+          <h4 class="card-title">{{title}}</h4>
+        </div>
+        <div class="card-content">
+          <div class="content table-responsive">
+            <br>
+            <mat-tab-group>
+              <mat-tab label="Correo">
+                <div style="padding: 1%">
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="card" style="padding-top: 0%; margin-top: 1%; margin-bottom: 1%; border: 0%">
+                        <div class="card-header card-header-success card-header-icon">
+                          <h4 class="card-title">Disponibilidad</h4>
+                        </div>
+                        <div style="padding: 1%">
+                          <form *ngIf="myEmail">
+
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="card" style="padding-top: 0%; margin-top: 1%; margin-bottom: 1%; border: 0%">
+                        <div class="card-header card-header-success card-header-icon">
+                          <h4 class="card-title">Área de Interés</h4>
+                        </div>
+                        <div style="padding: 1%">
+                          <form *ngIf="myEmail">
+                            <div class="row">
+                              <div class="col-sm-12">
+                                <!-- <mat-form-field class="example-full-width">
+                                  <mat-select placeholder="Áreas Laborales" [(ngModel)]="categorySelected.ID" name="categories" (selectionChange)="getSubCategories()">
+                                    <mat-option *ngFor="let mon of categories" [value]="mon.ID">
+                                      {{mon.name}}
+                                    </mat-option>
+                                  </mat-select>
+                                </mat-form-field> -->
+                              </div>
+                              <div class="col-sm-12">
+                                <!-- <mat-form-field class="example-full-width">
+                                  <mat-select placeholder="Área de Interés" [(ngModel)]="myContact.interstArea" name="interstArea">
+                                    <mat-option *ngFor="let mon of subCategories" [value]="mon.ID">
+                                      {{mon.name}}
+                                    </mat-option>
+                                  </mat-select>
+                                </mat-form-field> -->
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card" style="padding-top: 0%; margin-top: 1%; margin-bottom: 1%; border: 0%">
+                    <div class="card-header card-header-success card-header-icon">
+                      <h4 class="card-title">Estudios</h4>
+                      <!-- <button mat-button class="crx-button-primary" (click)="editStudy()">
+                        <i class="material-icons crx-button-primary">add</i>
+                      </button> -->
+                    </div>
+
+                  </div>
+                  <div class="card" style="padding-top: 0%; margin-top: 1%; margin-bottom: 1%; border: 0%">
+                    <div class="card-header card-header-success card-header-icon">
+                      <h4 class="card-title">Experiencia laboral</h4>
+                      <!-- <button mat-button class="crx-button-primary" (click)="openDialog()">
+                        <i class="material-icons crx-button-primary">add</i>
+                      </button> -->
+                    </div>
+                    <div style="padding: 1%">
+                      
+                    </div>
+                  </div>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

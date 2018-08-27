@@ -34,7 +34,7 @@ export const ROUTES: RouteInfo[] = [{
     icontype: 'card_travel',
     collapse: 'adm',
     children: [
-        { path: 'managementResumes', title: 'Administración', ab: 'A' },
+        // { path: 'managementResumes', title: 'Administración', ab: 'A' },
         // { path: 'pandaList', title: 'Panda', ab: 'P' }
     ]
 }, {
@@ -45,6 +45,16 @@ export const ROUTES: RouteInfo[] = [{
     collapse: 'crm',
     children: [
         { path: 'contactos', title: 'Contactos', ab: 'C' },
+        // { path: 'pandaList', title: 'Panda', ab: 'P' }
+    ]
+}, {
+    path: '/ope',
+    title: 'OPE',
+    type: 'sub',
+    icontype: 'card_travel',
+    collapse: 'ope',
+    children: [
+        { path: 'resumes', title: 'Resumes', ab: 'R' },
         // { path: 'pandaList', title: 'Panda', ab: 'P' }
     ]
 }

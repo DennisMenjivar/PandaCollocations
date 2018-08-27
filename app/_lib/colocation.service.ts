@@ -26,6 +26,7 @@ export class ColocationService {
   connected: boolean = false;
 
   myContact: Contact = null;
+  myEmail: Email = null;
 
   current_api: string = "http://collocationsapi.colocacioneshonduras.com/";//"http://creaxisapi.creaxis.xyz/";
 

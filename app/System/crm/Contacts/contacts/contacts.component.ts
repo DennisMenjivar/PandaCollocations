@@ -94,7 +94,7 @@ export class ContactsComponent implements OnInit {
   }
 
   createContact() {
-    this.router.navigate(['/crm/crearContacto', this.id_company])
+    this.router.navigate(['/crm/crearContacto', this.id_company]);
   }
 
   applyFilter(filterValue: string) {

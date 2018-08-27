@@ -46,7 +46,9 @@ export class LoginComponent implements OnInit, OnDestroy {
                         telephoneNumber: result.telephoneNumber,
                         name_user: result.name_user,
                         conectado: result.conectado,
-                        membership: result.membership
+                        membership: result.membership,
+                        email: result.email,
+                        passwordEmail: result.passwordEmail
                     }));
                     // Validacion exitosa
                     localStorage.setItem('Aprobado', 'SI');

@@ -1,5 +1,7 @@
 export class Login {
     username: string;
+    email: string;
+    passwordEmail: string;
     password: string;
     id_company: number;
     company_name: string;
@@ -14,6 +16,8 @@ export class Login {
     constructor(pUsername: string, pPassword: string) {
         this.username = pUsername;
         this.password = pPassword;
+        this.email = '';
+        this.passwordEmail = '';
         this.id_company = 0;
         this.company_name = '';
         this.photoString_company = '';
