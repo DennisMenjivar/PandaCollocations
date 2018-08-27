@@ -17,6 +17,7 @@ export class Email {
         this.password = '';
         this.from = '';
         this.to = '';
+        this.toName = '';
         this.subject = '';
         this.body = '';
         this.CC = '';

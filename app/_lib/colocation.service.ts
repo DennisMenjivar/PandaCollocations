@@ -262,6 +262,7 @@ export class ColocationService {
     var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
 
     return this._http.post(this.current_api + 'api/CollocationsApi/sendEmail/', body, requestOptions).map((data: Response) => {
+      this.showSwal('success-message', 'ENVIADO', 'El correo fúe enviado correctamente.');
       return 1;
     });
   }

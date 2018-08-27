@@ -33,7 +33,8 @@ export class ResumesComponent implements OnInit {
       this.id_company = JSON.parse(sessionStorage.getItem('currentUser')).id_company;
       this._auxiliar.myEmail.email = JSON.parse(sessionStorage.getItem('currentUser')).email;
       this._auxiliar.myEmail.from = JSON.parse(sessionStorage.getItem('currentUser')).email;
-      this._auxiliar.myEmail.password = JSON.parse(sessionStorage.getItem('currentUser')).password;
+      this._auxiliar.myEmail.password = JSON.parse(sessionStorage.getItem('currentUser')).passwordEmail;
+      this._auxiliar.myEmail.name = JSON.parse(sessionStorage.getItem('currentUser')).company_name;
     }
   }
 
@@ -55,7 +56,7 @@ export class ResumesComponent implements OnInit {
     this.selection.selected.forEach(element => {
       this._auxiliar.myEmail.body += 'Nombre Completo: ' + element.name + '\n'
         + 'Identidad: ' + element.identityString + '\n'
-        + 'Curriculum: ' + element.pdfLink + '\n\n';
+        + 'Curriculum: ' + element.pdfLink + '\n';
     });
 
     // this._auxiliar.myEmail.name = 'Dennis Menjivar';

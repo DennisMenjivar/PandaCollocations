@@ -17,6 +17,9 @@ export class SendResumesComponent implements OnInit {
 
   title: string = '';
 
+  sayHello: string = '';
+  footer: string = '';
+
   constructor(public router: Router, public _auxiliar: ColocationService, public dialog: MatDialog) {
     if (JSON.parse(sessionStorage.getItem('currentUser'))) {
       this.id_company = JSON.parse(sessionStorage.getItem('currentUser')).id_company;
@@ -37,7 +40,14 @@ export class SendResumesComponent implements OnInit {
   }
 
   sendEmail() {
+    this.myEmail.body += '\n' + this.footer;
+    let body = this.myEmail.body;
+    this.myEmail.body = this.sayHello + '\n\n' + body;
+    console.log("Email: ", this.myEmail);
 
+    this._auxiliar.sendEmail(this.myEmail).subscribe(result => {
+      this.goBack();
+    });
   }
 
 }
