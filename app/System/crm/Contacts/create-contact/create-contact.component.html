@@ -4,7 +4,7 @@
             <button mat-button class="crx-button-primary" (click)="goBack()">
                 <i class="material-icons crx-button-primary">keyboard_backspace</i>
             </button>
-            <button mat-button class="crx-button-primary" (click)="createContact()" *ngIf="studies!= null || _auxiliar.myContact == null">
+            <button mat-button class="crx-button-primary" (click)="createContact()" *ngIf="myContact.studies!= null && myContact.systemknowledges != null|| _auxiliar.myContact == null">
                 <i class="material-icons crx-button-primary">save</i>
             </button>
             <div class="card">

@@ -1,6 +1,7 @@
 import { LaboralExperience } from "./LaboralExperience.model";
 import { Study } from "./Study.model";
 import { Language } from "./Language.model";
+import { SystemKnowledge } from "./SystemKnowledge.model";
 
 export class Contact {
     ID: number;
@@ -43,6 +44,7 @@ export class Contact {
     laboralExperiences: LaboralExperience[];
     studies: Study[];
     languages: Language[];
+    systemknowledges: SystemKnowledge[];
 
     company_name: string;
     photoString_company: string;
@@ -88,6 +90,7 @@ export class Contact {
         this.laboralExperiences = [];
         this.studies = [];
         this.languages = [];
+        this.systemknowledges = [];
 
         this.company_name = '';
         this.photoString_company = '';

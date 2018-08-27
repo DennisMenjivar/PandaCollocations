@@ -69,6 +69,7 @@ export class SystemKnowledgesComponent implements OnInit {
   getSystemsKnowledge() {
     this._auxiliar.getSystemsKnowledges(this.myContact).subscribe(result => {
       this.dataSource.data = result;
+      this.myContact.systemknowledges = result;
     })
   }
 
