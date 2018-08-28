@@ -6,9 +6,16 @@ table {
     padding-left: 3%;
 }
 .mat-column-ciudad {
-    flex: 0 0 12%;
+    flex: 0 0 10%;
     padding-left: 0%;
     padding-right: 0%;
+}
+
+.mat-column-gender {
+    flex: 0 0 5%;
+    padding-left: 0%;
+    padding-right: 0%;
+    text-align: center;
 }
 .mat-column-interestArea {
     flex: 0 0 20%;
@@ -19,6 +26,7 @@ table {
     flex: 0 0 7%;
     padding-left: 0%;
     padding-right: 0%;
+    text-align: center;
 }
 .mat-column-profesion {
     flex: 0 0 22%;

@@ -42,6 +42,12 @@
                 <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
               </ng-container>
 
+              <!-- Genero Column -->
+              <ng-container matColumnDef="gender">
+                <mat-header-cell *matHeaderCellDef> Genero </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.gender.charAt(0)}} </mat-cell>
+              </ng-container>
+
               <!-- Celular Column -->
               <ng-container matColumnDef="yearsOld">
                 <mat-header-cell *matHeaderCellDef> Años </mat-header-cell>
@@ -82,7 +88,7 @@
                 </mat-cell>
               </ng-container>
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openPDFResume(row.ID)"></mat-row>
             </mat-table>
             <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
             </mat-paginator>

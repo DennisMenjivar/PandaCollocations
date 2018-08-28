@@ -23,7 +23,7 @@ export class ResumesComponent implements OnInit {
   id_company: number = 0;
 
   dataSource = new MatTableDataSource<Resume>();
-  displayedColumns = ['select', 'name', 'ciudad', 'yearsOld', 'profesion', 'interestArea', 'status'];
+  displayedColumns = ['select', 'name', 'ciudad', 'gender', 'yearsOld', 'profesion', 'interestArea', 'status'];
   selection = new SelectionModel<Resume>(true, []);
 
   constructor(public _auxiliar: ColocationService, public dialog: MatDialog, public router: Router) {
@@ -99,6 +99,10 @@ export class ResumesComponent implements OnInit {
     this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  openPDFResume(id_contact: number) {
+    window.open('http://collocationsapi.colocacioneshonduras.com/resumes/' + id_contact + '.pdf');
   }
 
 }

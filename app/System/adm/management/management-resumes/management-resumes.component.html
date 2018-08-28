@@ -36,10 +36,16 @@
                 <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
               </ng-container>
 
-              <!-- Telefono Column -->
+              <!-- Ciudad Column -->
               <ng-container matColumnDef="ciudad">
                 <mat-header-cell *matHeaderCellDef> Ciudad </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
+              </ng-container>
+
+              <!-- Genero Column -->
+              <ng-container matColumnDef="gender">
+                <mat-header-cell *matHeaderCellDef> Genero </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.gender.charAt(0)}} </mat-cell>
               </ng-container>
 
               <!-- Celular Column -->

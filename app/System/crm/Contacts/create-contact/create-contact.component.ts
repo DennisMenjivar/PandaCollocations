@@ -23,7 +23,7 @@ export class CreateContactComponent implements OnInit {
   title: string = 'Crear Contacto';
 
   dataSource = new MatTableDataSource<LaboralExperience>();
-  displayedColumns = ['Company', 'functions', 'salary', 'fromString', 'until', 'editar'];
+  displayedColumns = ['Company', 'position', 'functions', 'salary', 'fromString', 'until', 'editar'];
 
   dataSourceLanguages = new MatTableDataSource<Language>();
   displayedColumnsLanguages = ['Lenguaje', 'Nivel', 'editar'];

@@ -398,6 +398,12 @@
                                                 </ng-container>
 
                                                 <!-- Celular Column -->
+                                                <ng-container matColumnDef="position">
+                                                    <mat-header-cell *matHeaderCellDef> Cargo </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                                                </ng-container>
+
+                                                <!-- Celular Column -->
                                                 <ng-container matColumnDef="functions">
                                                     <mat-header-cell *matHeaderCellDef> Funciones </mat-header-cell>
                                                     <mat-cell *matCellDef="let element"> {{element.functions}} </mat-cell>
