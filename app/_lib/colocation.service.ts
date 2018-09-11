@@ -17,6 +17,7 @@ import { ContactAdditionalInformation } from '../_models/ContactAdditionalInform
 import { Email } from '../_models/Email.model';
 import swal from 'sweetalert2';
 import { Resume } from '../_models/Resume.model';
+import { Company } from '../_models/Company.model';
 import { SystemKnowledge } from '../_models/SystemKnowledge.model';
 
 @Injectable()
@@ -42,9 +43,21 @@ export class ColocationService {
       return data.json() as Login;
     }, error => {
       console.log("Error al login: ", error);
-
     });
   }
+
+  // COMPANIAS
+  getCompany(param: Company) {
+    var body = JSON.stringify(param);
+
+    var headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/CollocationsApi/getCompany/', body, requestOptions).map((data: Response) => {
+      return data.json() as Company;
+    });
+  }
+
   // Systems Knowledges
   getSystemsKnowledges(param: Contact) {
     var body = JSON.stringify(param);

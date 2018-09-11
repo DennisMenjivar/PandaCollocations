@@ -9,6 +9,9 @@ export class Resume {
     gender: string;
     profession: string;
     interestArea: string;
+    functions: string;
+    lenguages: string;
+    studies: string;
 
     constructor() {
         this.ID = 0;
@@ -21,5 +24,8 @@ export class Resume {
         this.gender = '';
         this.profession = '';
         this.interestArea = '';
+        this.functions = '';
+        this.lenguages = '';
+        this.studies = '';
     }
 }

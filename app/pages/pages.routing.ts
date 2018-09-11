@@ -16,7 +16,7 @@ export const PagesRoutes: Routes = [
             path: 'lock',
             component: LockComponent
         }, {
-            path: 'register',
+            path: 'aplicar/:id',
             component: RegisterComponent
         }, {
             path: 'pricing',

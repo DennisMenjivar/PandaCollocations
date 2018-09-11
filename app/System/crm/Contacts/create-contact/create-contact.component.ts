@@ -59,8 +59,8 @@ export class CreateContactComponent implements OnInit {
     if (_auxiliar.myContact != null) {
       this.myContact = _auxiliar.myContact;
       this.title = this.myContact.firstName + ' ' + this.myContact.lastName;
+      this.getContactInformation();
     }
-    this.getCategories();
   }
 
   getContactInformation() {
@@ -86,14 +86,13 @@ export class CreateContactComponent implements OnInit {
     }
   }
 
-  getContactAdditionalInformation(){
+  getContactAdditionalInformation() {
     this._auxiliar.getContactAdditionalInformation(this.myContact).subscribe(result => {
       this.myContact.licence = result.licence;
       this.myContact.car = result.car;
       this.myContact.licence_kind = result.licence_kind;
       this.myContact.officeLevel = result.officeLevel;
       this.myContact.dependents = result.dependents;
-
       this.getLaboralExperiences();
     })
   }
@@ -107,12 +106,10 @@ export class CreateContactComponent implements OnInit {
   }
 
   getSubCategories() {
-    this.myContact.interstArea = 0;
     this.subCategories = [];
     this._auxiliar.getSubCategories(this.categorySelected).subscribe(result => {
       this.subCategories = result;
-      this.getContactInformation();
-    })
+    });
   }
 
   createContact() {
@@ -137,6 +134,7 @@ export class CreateContactComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getCategories();
   }
 
   openDialog(): void {
@@ -144,8 +142,6 @@ export class CreateContactComponent implements OnInit {
       width: '500px',
       data: {
         myContact: this.myContact
-        // , miRamo: this.ramo
-        // , miAseguradora: this.miAseguradora
       }
 
     });
@@ -179,7 +175,7 @@ export class CreateContactComponent implements OnInit {
       this.dataSource.data = result;
       this.myContact.laboralExperiences = result;
       this.getLanguages();
-    })
+    });
   }
 
   getLanguages() {
@@ -198,7 +194,6 @@ export class CreateContactComponent implements OnInit {
         myContact: this.myContact,
         language: language
       }
-
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -231,7 +226,7 @@ export class CreateContactComponent implements OnInit {
       this.studies = data;
       this.dataSourceStudies.data = data;
       this.myContact.studies = data;
-    })
+    });
   }
 
   editStudy(pStudy: Study) {
