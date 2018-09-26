@@ -12,6 +12,7 @@ import { Language } from '../../../../_models/Language.model';
 import { LanguageEditDialogComponent } from '../language-edit-dialog/language-edit-dialog.component';
 import { Study } from '../../../../_models/Study.model';
 import { StudyEditDialogComponent } from '../study-edit-dialog/study-edit-dialog.component';
+import { ConfirmDialogComponent } from '../../../../components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-create-contact',
@@ -166,6 +167,60 @@ export class CreateContactComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
         this.getLaboralExperiences();
+      }
+    });
+  }
+
+  deleteStudy(study: Study) {
+    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      height: '210px',
+      data: { titulo: "Eliminar Estudio", texto: "Esta seguro que desea Eliminar este Estudio?", respuesta: false }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      const retorno: boolean = result;
+
+      if (retorno) {
+        this._auxiliar.deleteStudy(study).subscribe(result => {
+          this.getStudies();
+        });
+      }
+    });
+  }
+
+  deleteLaboralExperience(param: LaboralExperience) {
+    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      height: '230px',
+      data: { titulo: "Eliminar Experiencia Laboral", texto: "Esta seguro que desea Eliminar esta experiencia laboral?", respuesta: false }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      const retorno: boolean = result;
+
+      if (retorno) {
+        this._auxiliar.deleteLaboralExperience(param).subscribe(result => {
+          this.getLaboralExperiences();
+        });
+      }
+    });
+  }
+
+  deleteLanguage(param: Language) {
+    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      height: '230px',
+      data: { titulo: "Eliminar Estudio", texto: "Esta seguro que desea Eliminar este estudio?", respuesta: false }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      const retorno: boolean = result;
+
+      if (retorno) {
+        this._auxiliar.deleteLanguage(param).subscribe(result => {
+          this.getLanguages();
+        });
       }
     });
   }

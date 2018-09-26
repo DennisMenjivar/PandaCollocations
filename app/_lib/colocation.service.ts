@@ -190,6 +190,46 @@ export class ColocationService {
     });
   }
 
+  deleteSystemKnowledge(param: SystemKnowledge) {
+    var body = JSON.stringify(param);
+    var headerOptions = new Headers({ 'Content-type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/CollocationsApi/deleteSystemKnowledge/', body, requestOptions).map((data: Response) => {
+      return data.json() as number;
+    });
+  }
+
+  deleteLaboralExperience(param: LaboralExperience) {
+    var body = JSON.stringify(param);
+    var headerOptions = new Headers({ 'Content-type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/CollocationsApi/deleteLaboralExperience/', body, requestOptions).map((data: Response) => {
+      return data.json() as number;
+    });
+  }
+
+  deleteLanguage(param: Language) {
+    var body = JSON.stringify(param);
+    var headerOptions = new Headers({ 'Content-type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/CollocationsApi/deleteLanguage/', body, requestOptions).map((data: Response) => {
+      return data.json() as number;
+    });
+  }
+
+  deleteStudy(param: Study) {
+    var body = JSON.stringify(param);
+    var headerOptions = new Headers({ 'Content-type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/CollocationsApi/deleteStudy/', body, requestOptions).map((data: Response) => {
+      return data.json() as number;
+    });
+  }
+
   getContactInformation(contact: Contact) {
     var body = JSON.stringify(contact);
 

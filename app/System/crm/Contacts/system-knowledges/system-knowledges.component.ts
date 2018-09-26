@@ -6,6 +6,7 @@ import { MatPaginator, MatTableDataSource, DateAdapter } from '@angular/material
 import { Router } from '@angular/router';
 import { SystemKnowledge } from '../../../../_models/SystemKnowledge.model';
 import { CreateSKDialogComponent } from './create-skdialog/create-skdialog.component';
+import { ConfirmDialogComponent } from '../../../../components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-system-knowledges',
@@ -62,6 +63,24 @@ export class SystemKnowledgesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
         this.getSystemsKnowledge();
+      }
+    });
+  }
+
+  deleteSystemKnowledge(param: SystemKnowledge) {
+    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      height: '230px',
+      data: { titulo: "Eliminar", texto: "Esta seguro que desea Eliminar este dato?", respuesta: false }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      const retorno: boolean = result;
+
+      if (retorno) {
+        this._auxiliar.deleteSystemKnowledge(param).subscribe(result => {
+          this.getSystemsKnowledge();
+        });
       }
     });
   }
