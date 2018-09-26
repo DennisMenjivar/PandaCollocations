@@ -27,7 +27,8 @@
                             <!-- Telefono Column -->
                             <ng-container matColumnDef="name">
                                 <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-                                <mat-cell *matCellDef="let element"> {{element.firstName}} {{element.lastName}} </mat-cell>
+                                <mat-cell *matCellDef="let element"> {{element.firstName}} {{element.lastName}}
+                                </mat-cell>
                             </ng-container>
 
                             <!-- Celular Column -->
@@ -69,7 +70,8 @@
                                 <mat-header-cell *matHeaderCellDef>Editar</mat-header-cell>
                                 <mat-cell *matCellDef="let pro">
                                     <!-- Paid button -->
-                                    <button mat-icon-button style="color: rgb(25, 158, 25)" (click)="prePayUser(pro)" *ngIf="pro.paid == 0 && membership == 1">
+                                    <button mat-icon-button style="color: rgb(25, 158, 25)" (click)="prePayUser(pro)"
+                                        *ngIf="pro.paid == 0 && membership == 1">
                                         <mat-icon aria-label="Example icon-button with a heart icon">attach_money</mat-icon>
                                     </button>
                                     <!-- Status button -->
@@ -80,13 +82,18 @@
                                     <button mat-icon-button color="primary" (click)="editContact(pro)">
                                         <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
                                     </button>
+                                    <!-- Editar button -->
+                                    <button mat-icon-button style="color: red" (click)="deleteContact(pro)">
+                                        <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+                                    </button>
                                 </mat-cell>
                             </ng-container>
 
                             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                         </mat-table>
-                        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+                        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"
+                            [showFirstLastButtons]="true">
                         </mat-paginator>
                         <!-- <table class="table">
                 <thead class="text-primary">

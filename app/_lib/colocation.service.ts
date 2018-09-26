@@ -180,6 +180,16 @@ export class ColocationService {
     });
   }
 
+  deleteContact(contact: Contact) {
+    var body = JSON.stringify(contact);
+    var headerOptions = new Headers({ 'Content-type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions })
+
+    return this._http.post(this.current_api + 'api/CollocationsApi/deleteContact/', body, requestOptions).map((data: Response) => {
+      return data.json() as number;
+    });
+  }
+
   getContactInformation(contact: Contact) {
     var body = JSON.stringify(contact);
 

@@ -51,6 +51,24 @@ export class ContactsComponent implements OnInit {
     });
   }
 
+  deleteContact(contact: Contact) {
+    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      height: '210px',
+      data: { titulo: "Eliminar Usuario", texto: "Esta seguro que desea Eliminar a " + contact.firstName + ' ' + contact.lastName + '?', respuesta: false }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      const retorno: boolean = result;
+
+      if (retorno) {
+        this._auxiliar.deleteContact(contact).subscribe(result => {
+          this.getContacts();
+        });
+      }
+    });
+  }
+
   preActiveUser(contact: Contact) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '500px',
